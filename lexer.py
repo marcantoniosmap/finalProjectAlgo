@@ -22,6 +22,7 @@ class Lexer:
         tokens=[]
         activelist=tokens
         active='tags'
+        parent=None
 
 
         while self.current_char!=None:
@@ -43,7 +44,10 @@ class Lexer:
                 if active=="tags":
                     tag=self.getWord()
                     if tag in tagList:
-                        activelist.append(Token(tag))
+                        if parent:
+                            activelist.append(Token(tag,parent=parent,))
+                        else:
+                            activelist.append(Token(tag))
                     else:
                         error=InvalidSyntaxError("{} is not a HTML tag!".format(tag),self.pos-len(tag)+1)
                         return [],error
@@ -54,7 +58,7 @@ class Lexer:
                 elif active=="classType":
                     classType=self.getWord()
                     if len(activelist)>0:
-                        activelist[-1].addId(classType)
+                        activelist[-1].addClassType(classType)
 
             #if it meets the hash symbol
             elif self.current_char == '#':
@@ -68,9 +72,35 @@ class Lexer:
 
             #get inside the tag
             elif self.current_char == '>':
-                activelist=tokens[-1].children
+                parent=activelist[-1]
+                parent.list=activelist
+                activelist=activelist[-1].children
                 active="tags"
                 self.advance()
+
+            #create sibling tag
+            elif self.current_char == '+':
+                active="tags"
+                self.advance()
+
+            #to create content
+            elif self.current_char == '{':
+                content=self.getContent()
+                if content:
+                    activelist[-1].addContent(content)
+
+            #to move up a level
+            elif self.current_char == '^':
+                #if the current one have a parent, move one
+                if activelist[-1].parent:
+                    activelist=activelist[-1].parent.list
+                    self.advance()
+                else:
+                    error = IllegalCharError("it aint got no parent".format(self.current_char),
+                                             self.pos + 1)
+                    return [], error
+
+
             else:
                 error=IllegalCharError("The character {} can't be defined!".format(self.current_char),self.pos+1)
                 return [],error
@@ -98,11 +128,25 @@ class Lexer:
         while self.current_char in ' \t':
             self.advance()
 
-        while self.current_char != None and self.current_char in WORD:
+        while self.current_char != None and (self.current_char in WORD or self.current_char in DIGITS):
             word_string += self.current_char
             self.advance()
 
         return word_string
+
+    def getContent(self):
+        word_string = ''
+        self.advance()
+        while self.current_char in ' \t':
+            self.advance()
+        while self.current_char != '}':
+            word_string += self.current_char
+            self.advance()
+        self.advance()
+        if len(word_string)>0:
+            return word_string
+        else: return None
+
 
 if __name__ == '__main__':
     while True:
@@ -112,6 +156,8 @@ if __name__ == '__main__':
         if error:
             print(error.as_string())
         else:
-            print(token)
+            for t in token:
+                print(t)
+                pass
 
 
