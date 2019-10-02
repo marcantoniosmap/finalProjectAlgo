@@ -12,15 +12,8 @@ class Token:
     def __repr__(self):
         parentName=''
         if self.parent:
-            parentName=self.parent.tags
+            parentName=self.parent.id
         else: parentName='None'
-
-        # if self.list:
-        #     print(self.tags,"have a parent of a",self.parent,"that had a member of")
-        #     for i in self.list:
-        #         print(i.tags)
-        # else:
-        #     print("No Parent list")
 
         return "({} tags id={} class= {} " \
                "content={} children " \

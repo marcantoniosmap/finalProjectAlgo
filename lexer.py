@@ -1,6 +1,6 @@
 from tokens import *
 from errors import *
-
+from lorem import *
 DIGITS='0123456789'
 WORD='qwertyuiopasdfghjklzxcvbnm-_'
 tagList=["a","address","div","span","p","h1","h2","h1","h2","h1","h2",
@@ -13,7 +13,7 @@ class Lexer:
         self.pos=-1
         self.current_char=None
         self.advance()
-
+        self.lastTag=None
     def advance(self):
         self.pos+=1
         self.current_char=self.text[self.pos] if self.pos <len(self.text) else None
@@ -33,7 +33,7 @@ class Lexer:
 
             #if it encounters a * operator
             elif self.current_char == "*":
-                number=self.getNumber()
+                number=self.getNumber()-1
                 if number and len(activelist)>0:
                     multipliedTags=activelist[-1].copy()
                     for i in range(number):
@@ -48,6 +48,7 @@ class Lexer:
                             activelist.append(Token(tag,parent=parent,))
                         else:
                             activelist.append(Token(tag))
+                        self.lastTag=tag
                     else:
                         error=InvalidSyntaxError("{} is not a HTML tag!".format(tag),self.pos-len(tag)+1)
                         return [],error
@@ -94,6 +95,7 @@ class Lexer:
                 #if the current one have a parent, move one
                 if activelist[-1].parent:
                     activelist=activelist[-1].parent.list
+                    self.lastTag=activelist[-1].tags
                     self.advance()
                 else:
                     error = IllegalCharError("it aint got no parent".format(self.current_char),
@@ -118,7 +120,7 @@ class Lexer:
             self.advance()
         returnNumber=int(num_str)
 
-        if returnNumber>0 and returnNumber<100:
+        if returnNumber>0 and returnNumber<1000:
             return returnNumber
         else:
             return None
@@ -139,13 +141,29 @@ class Lexer:
         self.advance()
         while self.current_char in ' \t':
             self.advance()
-        while self.current_char != '}':
+        while self.current_char != '}' and self.current_char != None and self.current_char in WORD:
             word_string += self.current_char
             self.advance()
-        self.advance()
-        if len(word_string)>0:
-            return word_string
-        else: return None
+
+        if word_string.lower() == 'lorem':
+            return self.getLorem()
+        else:
+            self.advance()
+            if len(word_string)>0:
+                return word_string
+            else: return None
+
+    def getLorem(self):
+        # while self.current_char in ' \t':
+        #     self.advance()
+        print(self.current_char)
+        if self.current_char == '*':
+            number=self.getNumber()
+            self.advance()
+            return getLorem(number)
+        else :
+            self.advance()
+            return getLoremParagraph(self.lastTag)
 
 
 if __name__ == '__main__':
