@@ -11,15 +11,17 @@ class Token:
         else: self.children=[]
     def __repr__(self):
         parentName=''
-        if self.parent:
-            parentName=self.parent.id
+        if self.list:
+            parentName='YES'
         else: parentName='None'
 
         return "({} tags id={} class= {} " \
                "content={} children " \
-               "Token ={} parent={})".format(self.tags,self.id,self.classType,
+               "Token ={} hv list={})".format(self.tags,self.id,self.classType,
                                              self.content,self.children,parentName)
 
+    def setChildren(self,children):
+        self.children=children.copy()
 
     def addChildren(self,token):
         self.children.append(token)
@@ -33,4 +35,6 @@ class Token:
     def addContent(self,content):
         self.content=content
     def copy(self):
-        return Token(self.tags,self.id,self.classType,self.content,self.children,self.parent)
+        copy=Token(self.tags,self.id,self.classType,self.content,self.children,self.parent,self.list)
+        # copy.setChildren(self.children)
+        return copy

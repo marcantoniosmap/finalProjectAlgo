@@ -1,10 +1,14 @@
 from tokens import *
 from errors import *
 from lorem import *
+from parser import *
+import copy
+
 DIGITS='0123456789'
 WORD='qwertyuiopasdfghjklzxcvbnm-_'
+required=["img","br"]
 tagList=["a","address","div","span","p","h1","h2","h1","h2","h1","h2",
-         "ul","li","table","td","tr"
+         "ul","li","table","td","tr","img","br"
             ]
 ############lexer
 class Lexer:
@@ -23,6 +27,7 @@ class Lexer:
         activelist=tokens
         active='tags'
         parent=None
+        num=1
 
 
         while self.current_char!=None:
@@ -35,17 +40,17 @@ class Lexer:
             elif self.current_char == "*":
                 number=self.getNumber()-1
                 if number and len(activelist)>0:
-                    multipliedTags=activelist[-1].copy()
+                    num=number
+                    multipliedTags = activelist[-1]
                     for i in range(number):
                         activelist.append(multipliedTags)
-
             #if it encounters a word
             elif self.current_char in WORD:
                 if active=="tags":
                     tag=self.getWord()
                     if tag in tagList:
                         if parent:
-                            activelist.append(Token(tag,parent=parent,))
+                            activelist.append(Token(tag,parent=parent))
                         else:
                             activelist.append(Token(tag))
                         self.lastTag=tag
@@ -90,12 +95,20 @@ class Lexer:
                 if content:
                     activelist[-1].addContent(content)
 
+            #for grouping
+            elif self.current_char=='(':
+                pass
+
             #to move up a level
             elif self.current_char == '^':
+
                 #if the current one have a parent, move one
+
                 if activelist[-1].parent:
+
                     activelist=activelist[-1].parent.list
                     self.lastTag=activelist[-1].tags
+                    parent=activelist[-1].parent
                     self.advance()
                 else:
                     error = IllegalCharError("it aint got no parent".format(self.current_char),
@@ -166,16 +179,106 @@ class Lexer:
             return getLoremParagraph(self.lastTag)
 
 
-if __name__ == '__main__':
-    while True:
-        s=input(">>")
-        lexer=Lexer(s)
-        token,error=lexer.make_tokens()
-        if error:
-            print(error.as_string())
+
+class Parser:
+    def __init__(self,tokens):
+        self.tokens=tokens
+        self.activeList = tokens
+        # self.current_tok=tokens[0]
+        self.stack=[]
+        self.result=[]
+        self.level=0
+        self.indexList=[-1,-1,-1,-1]
+        self.advance()
+
+    # def advance(self):
+    #     self.index += 1
+    #     self.current_tok = self.activeList[self.index] if self.index < len(self.activeList) else None
+
+    # def advance(self):
+    #     indx=self.activeList.index(self.current_tok)
+    #     if  indx < len(self.activeList)-1:
+    #         self.current_tok=self.activeList[indx+1]
+    #     else: self.current_tok=None
+
+    def advance(self):
+        if self.indexList[self.level]<len(self.activeList)-1:
+            self.current_tok=self.activeList[self.indexList[self.level]+1]
         else:
-            for t in token:
-                print(t)
-                pass
+            self.current_tok=None
+
+    def parse(self):
+
+        while self.current_tok:
+            self.result.append(self.createTag(self.current_tok))
+            self.stack.append(self.current_tok)
+            self.indexList[self.level] = self.indexList[self.level] + 1
+            #if the current_tok had children
+            if self.current_tok.children:
+                self.level=self.level+1
+                # self.indexList[self.level]=self.indexList[self.level]+1
+                self.activeList =self.current_tok.children
+                self.current_tok=self.current_tok.children[0]
+
+            #if the current_tok had sibling but not children
+            elif self.haveSibling():
+                # self.indexList[self.level] = self.indexList[self.level] + 1
+                self.closeTag()
+                self.advance()
+
+            # if the current_tok had no sibling and children
+            elif self.current_tok.parent:
+                self.indexList[self.level] =-1
+                self.level = self.level -1
+                self.closeTag()
+                self.closeTag()
+                self.activeList=self.current_tok.parent.list
+                self.current_tok=self.current_tok.parent
+                self.advance()
+
+            else:
+                self.advance()
+
+        while self.stack:
+            self.closeTag()
 
 
+    def haveSibling(self):
+        if self.indexList[self.level]<len(self.activeList)-1:
+            return True
+        return False
+
+    def closeTag(self):
+        self.result.append(self.createCloseTag(self.stack[-1]))
+        self.stack.pop(-1)
+    def createTag(self,token):
+        if token.content:
+            return  "<{}> {}".format(token.tags,token.content)
+        else:
+            return "<{}>".format(token.tags)
+
+    def createCloseTag(self,token):
+        if token.tags not in required:
+            return "</{}>".format(token.tags)
+        else:
+            return ""
+
+
+if __name__ == '__main__':
+        while True:
+            s=input(">>")
+            lexer=Lexer(s)
+            token,error=lexer.make_tokens()
+            if error:
+                print(error.as_string())
+            # else:
+            #     for t in token:
+            #         print(t)
+            #         # print(t.parent)
+            #         # print(t.list)
+            # for i in range(len(token)):
+            #     token[i]=copy.deepcopy(token[i])
+            p=Parser(token)
+            p.parse()
+            for i in p.result:
+                print(i)

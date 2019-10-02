@@ -1,23 +1,22 @@
-class Try:
-    def __init__(self,value1,value2):
-        self.value1=value1
-        self.value2=value2
-        self.container=[]
-    def saveContainer(self,container):
-        self.container=container
-
+import copy
+class C():
+    def __init__(self):
+        self.x = [1]
+        self.y = [2]
     def __repr__(self):
-        return f'{self.value1}+{self.value2}'
-
-
+        return f'{self.x},{self.y}'
+c = C()
 list=[]
-list.append(Try(10,2))
-list[0].saveContainer(list)
+for i in range(10):
+    list.append(c)
 
-list2=list[0].container
-list2.append(Try(19,92))
+for i in list:
+    i=copy.deepcopy(i)
 
-print(list)
-
-
+list[7].x.append(10)
+print(list[0])
+# d = copy.deepcopy(c)
+# d.x[0] = 3
+# print(c)
+# print(d)
 
