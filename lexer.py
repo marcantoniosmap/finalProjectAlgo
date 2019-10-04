@@ -1,15 +1,26 @@
 from tokens import *
 from errors import *
 from lorem import *
-from parser import *
-import copy
+from parserFile import Parser
+
 
 DIGITS='0123456789'
 WORD='qwertyuiopasdfghjklzxcvbnm-_'
-required=["img","br"]
-tagList=["a","address","div","span","p","h1","h2","h1","h2","h1","h2",
+
+tagList=["a","address","div","span","p","h1","h2","h3","h4","h5","h6",
          "ul","li","table","td","tr","img","br"
             ]
+
+TT_MULTIPLY='*'
+INSERT='>'
+GO_OUT='^'
+ID='#'''
+CLASS='.'
+SIBLING='+'
+CONTENT_LEFT='{'
+CONTENT_RIGHT='}'
+
+
 ############lexer
 class Lexer:
     def __init__(self,text):
@@ -37,7 +48,7 @@ class Lexer:
                 self.advance()
 
             #if it encounters a * operator
-            elif self.current_char == "*":
+            elif self.current_char == TT_MULTIPLY:
                 number=self.getNumber()-1
                 if number and len(activelist)>0:
                     num=number
@@ -180,88 +191,6 @@ class Lexer:
 
 
 
-class Parser:
-    def __init__(self,tokens):
-        self.tokens=tokens
-        self.activeList = tokens
-        # self.current_tok=tokens[0]
-        self.stack=[]
-        self.result=[]
-        self.level=0
-        self.indexList=[-1,-1,-1,-1]
-        self.advance()
-
-    # def advance(self):
-    #     self.index += 1
-    #     self.current_tok = self.activeList[self.index] if self.index < len(self.activeList) else None
-
-    # def advance(self):
-    #     indx=self.activeList.index(self.current_tok)
-    #     if  indx < len(self.activeList)-1:
-    #         self.current_tok=self.activeList[indx+1]
-    #     else: self.current_tok=None
-
-    def advance(self):
-        if self.indexList[self.level]<len(self.activeList)-1:
-            self.current_tok=self.activeList[self.indexList[self.level]+1]
-        else:
-            self.current_tok=None
-
-    def parse(self):
-
-        while self.current_tok:
-            self.result.append(self.createTag(self.current_tok))
-            self.stack.append(self.current_tok)
-            self.indexList[self.level] = self.indexList[self.level] + 1
-            #if the current_tok had children
-            if self.current_tok.children:
-                self.level=self.level+1
-                # self.indexList[self.level]=self.indexList[self.level]+1
-                self.activeList =self.current_tok.children
-                self.current_tok=self.current_tok.children[0]
-
-            #if the current_tok had sibling but not children
-            elif self.haveSibling():
-                # self.indexList[self.level] = self.indexList[self.level] + 1
-                self.closeTag()
-                self.advance()
-
-            # if the current_tok had no sibling and children
-            elif self.current_tok.parent:
-                self.indexList[self.level] =-1
-                self.level = self.level -1
-                self.closeTag()
-                self.closeTag()
-                self.activeList=self.current_tok.parent.list
-                self.current_tok=self.current_tok.parent
-                self.advance()
-
-            else:
-                self.advance()
-
-        while self.stack:
-            self.closeTag()
-
-
-    def haveSibling(self):
-        if self.indexList[self.level]<len(self.activeList)-1:
-            return True
-        return False
-
-    def closeTag(self):
-        self.result.append(self.createCloseTag(self.stack[-1]))
-        self.stack.pop(-1)
-    def createTag(self,token):
-        if token.content:
-            return  "<{}> {}".format(token.tags,token.content)
-        else:
-            return "<{}>".format(token.tags)
-
-    def createCloseTag(self,token):
-        if token.tags not in required:
-            return "</{}>".format(token.tags)
-        else:
-            return ""
 
 
 if __name__ == '__main__':
@@ -274,10 +203,9 @@ if __name__ == '__main__':
             # else:
             #     for t in token:
             #         print(t)
-            #         # print(t.parent)
-            #         # print(t.list)
-            # for i in range(len(token)):
-            #     token[i]=copy.deepcopy(token[i])
+                    # print(t.parent)
+                    # print(t.list)
+
             p=Parser(token)
             p.parse()
             for i in p.result:

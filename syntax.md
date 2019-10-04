@@ -1,7 +1,6 @@
 
 
-SYNTAX:
-
+#SYNTAX:
 tags:   {
 
     div,
@@ -68,6 +67,20 @@ example:
      </div>
 }
 
+CLIMB UP TAGS: '^'
+going one up the parent's tag
+example:
+    >> div >p ^ span
+{
+    <div>
+    <p>
+    </p>
+     </div>
+     <span>
+     </span>
+}
+
+
 CONTENT TAGS: '{_}'
 setting the content on the current tags
 example:
@@ -82,10 +95,18 @@ LOREM AUTOMATION: '{lorem}' or '{lorem*10}'
 setting the content on the current tags as a dummy text,
 can be specified by words count or automatize based on tag
 example:
-    >> div {lorem*10}
+    >> div {lorem}
 {
     <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu.
      </div>
 }
+
+    >> div {lorem*2}
+{
+    <div>
+        Lorem ipsum.
+     </div>
+}
+
 
