@@ -2,7 +2,6 @@
 #TO DO NEXT : GROUPING
 
 import ply.lex as lex
-import ply.yacc as yacc
 import  sys
 
 tokens = [
@@ -23,11 +22,11 @@ reserved={
     'span' : 'SPAN',
     'p' : 'P',
     'h1' : 'H1',
-    "h2" : "H2",
-    "h3" : "H3",
-    "h4" : "H4",
-    "h5" : "H5",
-    "h6" : "H6",
+    'h2' : 'H2',
+    'h3' : 'H3',
+    'h4' : 'H4',
+    'h5' : 'H5',
+    'h6' : 'H6',
     "ul" : "UL",
     "li" : "LI",
     "table" : "TABLE",
@@ -70,15 +69,14 @@ def t_error(t):
 
 lexer=lex.lex()
 
-# lexer.input("div > div")
-while 1:
-    s=input(">> ")
-    lexer.input(s)
-    while True:
-        tok = lexer.token()
-        if not tok: 
-            break
-        print(tok)
+# while 1:
+#     s=input(">> ")
+#     lexer.input(s)
+#     while True:
+#         tok = lexer.token()
+#         if not tok: 
+#             break
+#         print(tok)
 
 # while True:
 #     s=input(">> ")

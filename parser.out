@@ -1,1 +1,426 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CLIMB
+    DOT
+    HASH
+    ID
+    L_CURLY
+    MULTIPLY
+    R_CURLY
+
+Grammar
+
+Rule 0     S' -> base
+Rule 1     base -> expression
+Rule 2     base -> empty
+Rule 3     expression -> expression R_ANGLE expression
+Rule 4     expression -> expression SIBLING expression
+Rule 5     expression -> DIV
+Rule 6     expression -> INT
+Rule 7     expression -> SPAN
+Rule 8     expression -> P
+Rule 9     expression -> H1
+Rule 10    expression -> H2
+Rule 11    expression -> H3
+Rule 12    expression -> H4
+Rule 13    expression -> H5
+Rule 14    expression -> H6
+Rule 15    expression -> UL
+Rule 16    expression -> LI
+Rule 17    expression -> TABLE
+Rule 18    expression -> TD
+Rule 19    expression -> TR
+Rule 20    expression -> IMG
+Rule 21    expression -> BR
+Rule 22    empty -> <empty>
+
+Terminals, with rules where they appear
+
+BR                   : 21
+CLIMB                : 
+DIV                  : 5
+DOT                  : 
+H1                   : 9
+H2                   : 10
+H3                   : 11
+H4                   : 12
+H5                   : 13
+H6                   : 14
+HASH                 : 
+ID                   : 
+IMG                  : 20
+INT                  : 6
+LI                   : 16
+L_CURLY              : 
+MULTIPLY             : 
+P                    : 8
+R_ANGLE              : 3
+R_CURLY              : 
+SIBLING              : 4
+SPAN                 : 7
+TABLE                : 17
+TD                   : 18
+TR                   : 19
+UL                   : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+base                 : 0
+empty                : 2
+expression           : 1 3 3 4 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . base
+    (1) base -> . expression
+    (2) base -> . empty
+    (3) expression -> . expression R_ANGLE expression
+    (4) expression -> . expression SIBLING expression
+    (5) expression -> . DIV
+    (6) expression -> . INT
+    (7) expression -> . SPAN
+    (8) expression -> . P
+    (9) expression -> . H1
+    (10) expression -> . H2
+    (11) expression -> . H3
+    (12) expression -> . H4
+    (13) expression -> . H5
+    (14) expression -> . H6
+    (15) expression -> . UL
+    (16) expression -> . LI
+    (17) expression -> . TABLE
+    (18) expression -> . TD
+    (19) expression -> . TR
+    (20) expression -> . IMG
+    (21) expression -> . BR
+    (22) empty -> .
+
+    DIV             shift and go to state 4
+    INT             shift and go to state 5
+    SPAN            shift and go to state 6
+    P               shift and go to state 7
+    H1              shift and go to state 8
+    H2              shift and go to state 9
+    H3              shift and go to state 10
+    H4              shift and go to state 11
+    H5              shift and go to state 12
+    H6              shift and go to state 13
+    UL              shift and go to state 14
+    LI              shift and go to state 15
+    TABLE           shift and go to state 16
+    TD              shift and go to state 17
+    TR              shift and go to state 18
+    IMG             shift and go to state 19
+    BR              shift and go to state 20
+    $end            reduce using rule 22 (empty -> .)
+
+    base                           shift and go to state 1
+    expression                     shift and go to state 2
+    empty                          shift and go to state 3
+
+state 1
+
+    (0) S' -> base .
+
+
+
+state 2
+
+    (1) base -> expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+
+    $end            reduce using rule 1 (base -> expression .)
+    R_ANGLE         shift and go to state 21
+    SIBLING         shift and go to state 22
+
+
+state 3
+
+    (2) base -> empty .
+
+    $end            reduce using rule 2 (base -> empty .)
+
+
+state 4
+
+    (5) expression -> DIV .
+
+    R_ANGLE         reduce using rule 5 (expression -> DIV .)
+    SIBLING         reduce using rule 5 (expression -> DIV .)
+    $end            reduce using rule 5 (expression -> DIV .)
+
+
+state 5
+
+    (6) expression -> INT .
+
+    R_ANGLE         reduce using rule 6 (expression -> INT .)
+    SIBLING         reduce using rule 6 (expression -> INT .)
+    $end            reduce using rule 6 (expression -> INT .)
+
+
+state 6
+
+    (7) expression -> SPAN .
+
+    R_ANGLE         reduce using rule 7 (expression -> SPAN .)
+    SIBLING         reduce using rule 7 (expression -> SPAN .)
+    $end            reduce using rule 7 (expression -> SPAN .)
+
+
+state 7
+
+    (8) expression -> P .
+
+    R_ANGLE         reduce using rule 8 (expression -> P .)
+    SIBLING         reduce using rule 8 (expression -> P .)
+    $end            reduce using rule 8 (expression -> P .)
+
+
+state 8
+
+    (9) expression -> H1 .
+
+    R_ANGLE         reduce using rule 9 (expression -> H1 .)
+    SIBLING         reduce using rule 9 (expression -> H1 .)
+    $end            reduce using rule 9 (expression -> H1 .)
+
+
+state 9
+
+    (10) expression -> H2 .
+
+    R_ANGLE         reduce using rule 10 (expression -> H2 .)
+    SIBLING         reduce using rule 10 (expression -> H2 .)
+    $end            reduce using rule 10 (expression -> H2 .)
+
+
+state 10
+
+    (11) expression -> H3 .
+
+    R_ANGLE         reduce using rule 11 (expression -> H3 .)
+    SIBLING         reduce using rule 11 (expression -> H3 .)
+    $end            reduce using rule 11 (expression -> H3 .)
+
+
+state 11
+
+    (12) expression -> H4 .
+
+    R_ANGLE         reduce using rule 12 (expression -> H4 .)
+    SIBLING         reduce using rule 12 (expression -> H4 .)
+    $end            reduce using rule 12 (expression -> H4 .)
+
+
+state 12
+
+    (13) expression -> H5 .
+
+    R_ANGLE         reduce using rule 13 (expression -> H5 .)
+    SIBLING         reduce using rule 13 (expression -> H5 .)
+    $end            reduce using rule 13 (expression -> H5 .)
+
+
+state 13
+
+    (14) expression -> H6 .
+
+    R_ANGLE         reduce using rule 14 (expression -> H6 .)
+    SIBLING         reduce using rule 14 (expression -> H6 .)
+    $end            reduce using rule 14 (expression -> H6 .)
+
+
+state 14
+
+    (15) expression -> UL .
+
+    R_ANGLE         reduce using rule 15 (expression -> UL .)
+    SIBLING         reduce using rule 15 (expression -> UL .)
+    $end            reduce using rule 15 (expression -> UL .)
+
+
+state 15
+
+    (16) expression -> LI .
+
+    R_ANGLE         reduce using rule 16 (expression -> LI .)
+    SIBLING         reduce using rule 16 (expression -> LI .)
+    $end            reduce using rule 16 (expression -> LI .)
+
+
+state 16
+
+    (17) expression -> TABLE .
+
+    R_ANGLE         reduce using rule 17 (expression -> TABLE .)
+    SIBLING         reduce using rule 17 (expression -> TABLE .)
+    $end            reduce using rule 17 (expression -> TABLE .)
+
+
+state 17
+
+    (18) expression -> TD .
+
+    R_ANGLE         reduce using rule 18 (expression -> TD .)
+    SIBLING         reduce using rule 18 (expression -> TD .)
+    $end            reduce using rule 18 (expression -> TD .)
+
+
+state 18
+
+    (19) expression -> TR .
+
+    R_ANGLE         reduce using rule 19 (expression -> TR .)
+    SIBLING         reduce using rule 19 (expression -> TR .)
+    $end            reduce using rule 19 (expression -> TR .)
+
+
+state 19
+
+    (20) expression -> IMG .
+
+    R_ANGLE         reduce using rule 20 (expression -> IMG .)
+    SIBLING         reduce using rule 20 (expression -> IMG .)
+    $end            reduce using rule 20 (expression -> IMG .)
+
+
+state 20
+
+    (21) expression -> BR .
+
+    R_ANGLE         reduce using rule 21 (expression -> BR .)
+    SIBLING         reduce using rule 21 (expression -> BR .)
+    $end            reduce using rule 21 (expression -> BR .)
+
+
+state 21
+
+    (3) expression -> expression R_ANGLE . expression
+    (3) expression -> . expression R_ANGLE expression
+    (4) expression -> . expression SIBLING expression
+    (5) expression -> . DIV
+    (6) expression -> . INT
+    (7) expression -> . SPAN
+    (8) expression -> . P
+    (9) expression -> . H1
+    (10) expression -> . H2
+    (11) expression -> . H3
+    (12) expression -> . H4
+    (13) expression -> . H5
+    (14) expression -> . H6
+    (15) expression -> . UL
+    (16) expression -> . LI
+    (17) expression -> . TABLE
+    (18) expression -> . TD
+    (19) expression -> . TR
+    (20) expression -> . IMG
+    (21) expression -> . BR
+
+    DIV             shift and go to state 4
+    INT             shift and go to state 5
+    SPAN            shift and go to state 6
+    P               shift and go to state 7
+    H1              shift and go to state 8
+    H2              shift and go to state 9
+    H3              shift and go to state 10
+    H4              shift and go to state 11
+    H5              shift and go to state 12
+    H6              shift and go to state 13
+    UL              shift and go to state 14
+    LI              shift and go to state 15
+    TABLE           shift and go to state 16
+    TD              shift and go to state 17
+    TR              shift and go to state 18
+    IMG             shift and go to state 19
+    BR              shift and go to state 20
+
+    expression                     shift and go to state 23
+
+state 22
+
+    (4) expression -> expression SIBLING . expression
+    (3) expression -> . expression R_ANGLE expression
+    (4) expression -> . expression SIBLING expression
+    (5) expression -> . DIV
+    (6) expression -> . INT
+    (7) expression -> . SPAN
+    (8) expression -> . P
+    (9) expression -> . H1
+    (10) expression -> . H2
+    (11) expression -> . H3
+    (12) expression -> . H4
+    (13) expression -> . H5
+    (14) expression -> . H6
+    (15) expression -> . UL
+    (16) expression -> . LI
+    (17) expression -> . TABLE
+    (18) expression -> . TD
+    (19) expression -> . TR
+    (20) expression -> . IMG
+    (21) expression -> . BR
+
+    DIV             shift and go to state 4
+    INT             shift and go to state 5
+    SPAN            shift and go to state 6
+    P               shift and go to state 7
+    H1              shift and go to state 8
+    H2              shift and go to state 9
+    H3              shift and go to state 10
+    H4              shift and go to state 11
+    H5              shift and go to state 12
+    H6              shift and go to state 13
+    UL              shift and go to state 14
+    LI              shift and go to state 15
+    TABLE           shift and go to state 16
+    TD              shift and go to state 17
+    TR              shift and go to state 18
+    IMG             shift and go to state 19
+    BR              shift and go to state 20
+
+    expression                     shift and go to state 24
+
+state 23
+
+    (3) expression -> expression R_ANGLE expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+
+  ! shift/reduce conflict for R_ANGLE resolved as shift
+  ! shift/reduce conflict for SIBLING resolved as shift
+    $end            reduce using rule 3 (expression -> expression R_ANGLE expression .)
+    R_ANGLE         shift and go to state 21
+    SIBLING         shift and go to state 22
+
+  ! R_ANGLE         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+  ! SIBLING         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+
+
+state 24
+
+    (4) expression -> expression SIBLING expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+
+  ! shift/reduce conflict for R_ANGLE resolved as shift
+  ! shift/reduce conflict for SIBLING resolved as shift
+    $end            reduce using rule 4 (expression -> expression SIBLING expression .)
+    R_ANGLE         shift and go to state 21
+    SIBLING         shift and go to state 22
+
+  ! R_ANGLE         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+  ! SIBLING         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for R_ANGLE in state 23 resolved as shift
+WARNING: shift/reduce conflict for SIBLING in state 23 resolved as shift
+WARNING: shift/reduce conflict for R_ANGLE in state 24 resolved as shift
+WARNING: shift/reduce conflict for SIBLING in state 24 resolved as shift
