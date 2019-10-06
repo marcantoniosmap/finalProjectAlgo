@@ -9,6 +9,8 @@ tokens = [
     'R_ANGLE',
     'SIBLING',
     'MULTIPLY',
+    'L_PAREN',
+    'R_PAREN',
     'L_CURLY',
     'R_CURLY',
     'CLIMB',
@@ -44,6 +46,8 @@ t_ignore=r' '
 t_R_ANGLE=r'\>'
 t_SIBLING=r'\+'
 t_MULTIPLY=r'\*'
+t_L_PAREN=r'\('
+t_R_PAREN=r'\)'
 t_L_CURLY=r'\{'
 t_R_CURLY=r'\}'
 t_CLIMB=r'\^'

@@ -1,3 +1,6 @@
+# TODO multiplication, grouping, attribute operatos(ID, CLASS, item numbering), test {} 
+# https://docs.emmet.io/abbreviations/syntax/
+
 import ply.yacc as yacc
 from plytoken import tokens
 import sys
@@ -13,36 +16,43 @@ def p_base(p):
 
 # Nonterminal symbols (or syntactic variables) are replaced by groups of terminal symbols
 
-# TODO unfinished non-terminal expressions
+# unfinished non-terminal expressions (operators)
 def p_expression_nonterminal(p):
     '''
     expression : expression R_ANGLE expression
                | expression SIBLING expression
+               | expression CLIMB expression
     '''
     p[0] = (p[2], p[1], p[3])
+
+def p_temp(p):
+    '''
+    expression : NAME
+    '''
+    p[0] = p[1]
 
 # TODO temporary solution to ID tokens will change in the future
 def p_expression_terminal(p):
     '''
-    expression : DIV 
-               | INT
-               | SPAN
-               | P
-               | H1
-               | H2
-               | H3
-               | H4
-               | H5
-               | H6
-               | UL
-               | LI
-               | TABLE
-               | TD
-               | TR
-               | IMG
-               | BR
+    NAME : DIV
+        | SPAN
+        | P
+        | H1
+        | H2
+        | H3
+        | H4
+        | H5
+        | H6
+        | UL
+        | LI
+        | TABLE
+        | TD
+        | TR
+        | IMG
+        | BR
     '''
     p[0] = p[1]
+
 
 def p_empty(p):
     '''
