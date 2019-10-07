@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BR CLIMB DIV DOT H1 H2 H3 H4 H5 H6 HASH ID IMG INT LI L_CURLY L_PAREN MULTIPLY P R_ANGLE R_CURLY R_PAREN SIBLING SPAN TABLE TD TR UL\n    base :  expression \n         |  empty\n    \n    expression : expression R_ANGLE expression\n               | expression SIBLING expression\n               | expression CLIMB expression\n    \n    expression : NAME\n    \n    NAME : DIV\n        | SPAN\n        | P\n        | H1\n        | H2\n        | H3\n        | H4\n        | H5\n        | H6\n        | UL\n        | LI\n        | TABLE\n        | TD\n        | TR\n        | IMG\n        | BR\n    \n    empty :\n    '
+_lr_signature = 'BR CLIMB DIV DOT H1 H2 H3 H4 H5 H6 HASH ID IMG INT LI L_CURLY L_PAREN MULTIPLY P R_ANGLE R_CURLY R_PAREN SIBLING SPAN STRING TABLE TD TR UL\n    base :  expression \n         |  empty\n    \n    expression : expression R_ANGLE expression\n               | expression SIBLING expression\n               | expression CLIMB expression\n               | expression MULTIPLY INT\n    \n    expression : NAME\n    \n    NAME : DIV\n        | SPAN\n        | P\n        | H1\n        | H2\n        | H3\n        | H4\n        | H5\n        | H6\n        | UL\n        | LI\n        | TABLE\n        | TD\n        | TR\n        | IMG\n        | BR\n    \n    empty :\n    '
     
-_lr_action_items = {'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,],[-23,0,-1,-2,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-3,-4,-5,]),'DIV':([0,21,22,23,],[5,5,5,5,]),'SPAN':([0,21,22,23,],[6,6,6,6,]),'P':([0,21,22,23,],[7,7,7,7,]),'H1':([0,21,22,23,],[8,8,8,8,]),'H2':([0,21,22,23,],[9,9,9,9,]),'H3':([0,21,22,23,],[10,10,10,10,]),'H4':([0,21,22,23,],[11,11,11,11,]),'H5':([0,21,22,23,],[12,12,12,12,]),'H6':([0,21,22,23,],[13,13,13,13,]),'UL':([0,21,22,23,],[14,14,14,14,]),'LI':([0,21,22,23,],[15,15,15,15,]),'TABLE':([0,21,22,23,],[16,16,16,16,]),'TD':([0,21,22,23,],[17,17,17,17,]),'TR':([0,21,22,23,],[18,18,18,18,]),'IMG':([0,21,22,23,],[19,19,19,19,]),'BR':([0,21,22,23,],[20,20,20,20,]),'R_ANGLE':([2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,],[21,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,21,21,21,]),'SIBLING':([2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,],[22,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,22,22,22,]),'CLIMB':([2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,],[23,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,23,23,23,]),}
+_lr_action_items = {'BR':([0,21,22,23,],[1,1,1,1,]),'TD':([0,21,22,23,],[7,7,7,7,]),'H2':([0,21,22,23,],[5,5,5,5,]),'SIBLING':([1,2,3,4,5,6,7,8,9,10,12,13,15,16,17,18,19,20,25,26,27,28,],[-23,-9,-15,-17,-12,-16,-20,-19,-13,-14,-21,-18,-22,-10,-11,-7,-8,22,22,22,22,-6,]),'MULTIPLY':([1,2,3,4,5,6,7,8,9,10,12,13,15,16,17,18,19,20,25,26,27,28,],[-23,-9,-15,-17,-12,-16,-20,-19,-13,-14,-21,-18,-22,-10,-11,-7,-8,24,24,24,24,-6,]),'INT':([24,],[28,]),'LI':([0,21,22,23,],[13,13,13,13,]),'UL':([0,21,22,23,],[4,4,4,4,]),'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,26,27,28,],[-24,-23,-9,-15,-17,-12,-16,-20,-19,-13,-14,-2,-21,-18,0,-22,-10,-11,-7,-8,-1,-5,-4,-3,-6,]),'H6':([0,21,22,23,],[6,6,6,6,]),'CLIMB':([1,2,3,4,5,6,7,8,9,10,12,13,15,16,17,18,19,20,25,26,27,28,],[-23,-9,-15,-17,-12,-16,-20,-19,-13,-14,-21,-18,-22,-10,-11,-7,-8,21,21,21,21,-6,]),'TABLE':([0,21,22,23,],[8,8,8,8,]),'H3':([0,21,22,23,],[9,9,9,9,]),'H4':([0,21,22,23,],[10,10,10,10,]),'H1':([0,21,22,23,],[17,17,17,17,]),'TR':([0,21,22,23,],[12,12,12,12,]),'R_ANGLE':([1,2,3,4,5,6,7,8,9,10,12,13,15,16,17,18,19,20,25,26,27,28,],[-23,-9,-15,-17,-12,-16,-20,-19,-13,-14,-21,-18,-22,-10,-11,-7,-8,23,23,23,23,-6,]),'H5':([0,21,22,23,],[3,3,3,3,]),'IMG':([0,21,22,23,],[15,15,15,15,]),'P':([0,21,22,23,],[16,16,16,16,]),'DIV':([0,21,22,23,],[19,19,19,19,]),'SPAN':([0,21,22,23,],[2,2,2,2,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'base':([0,],[1,]),'expression':([0,21,22,23,],[2,24,25,26,]),'empty':([0,],[3,]),'NAME':([0,21,22,23,],[4,4,4,4,]),}
+_lr_goto_items = {'empty':([0,],[11,]),'NAME':([0,21,22,23,],[18,18,18,18,]),'base':([0,],[14,]),'expression':([0,21,22,23,],[20,25,26,27,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,22 +32,23 @@ _lr_productions = [
   ('expression -> expression R_ANGLE expression','expression',3,'p_expression_nonterminal','plyparse.py',22),
   ('expression -> expression SIBLING expression','expression',3,'p_expression_nonterminal','plyparse.py',23),
   ('expression -> expression CLIMB expression','expression',3,'p_expression_nonterminal','plyparse.py',24),
-  ('expression -> NAME','expression',1,'p_temp','plyparse.py',30),
-  ('NAME -> DIV','NAME',1,'p_expression_terminal','plyparse.py',37),
-  ('NAME -> SPAN','NAME',1,'p_expression_terminal','plyparse.py',38),
-  ('NAME -> P','NAME',1,'p_expression_terminal','plyparse.py',39),
-  ('NAME -> H1','NAME',1,'p_expression_terminal','plyparse.py',40),
-  ('NAME -> H2','NAME',1,'p_expression_terminal','plyparse.py',41),
-  ('NAME -> H3','NAME',1,'p_expression_terminal','plyparse.py',42),
-  ('NAME -> H4','NAME',1,'p_expression_terminal','plyparse.py',43),
-  ('NAME -> H5','NAME',1,'p_expression_terminal','plyparse.py',44),
-  ('NAME -> H6','NAME',1,'p_expression_terminal','plyparse.py',45),
-  ('NAME -> UL','NAME',1,'p_expression_terminal','plyparse.py',46),
-  ('NAME -> LI','NAME',1,'p_expression_terminal','plyparse.py',47),
-  ('NAME -> TABLE','NAME',1,'p_expression_terminal','plyparse.py',48),
-  ('NAME -> TD','NAME',1,'p_expression_terminal','plyparse.py',49),
-  ('NAME -> TR','NAME',1,'p_expression_terminal','plyparse.py',50),
-  ('NAME -> IMG','NAME',1,'p_expression_terminal','plyparse.py',51),
-  ('NAME -> BR','NAME',1,'p_expression_terminal','plyparse.py',52),
-  ('empty -> <empty>','empty',0,'p_empty','plyparse.py',59),
+  ('expression -> expression MULTIPLY INT','expression',3,'p_expression_nonterminal','plyparse.py',25),
+  ('expression -> NAME','expression',1,'p_temp','plyparse.py',31),
+  ('NAME -> DIV','NAME',1,'p_expression_terminal','plyparse.py',38),
+  ('NAME -> SPAN','NAME',1,'p_expression_terminal','plyparse.py',39),
+  ('NAME -> P','NAME',1,'p_expression_terminal','plyparse.py',40),
+  ('NAME -> H1','NAME',1,'p_expression_terminal','plyparse.py',41),
+  ('NAME -> H2','NAME',1,'p_expression_terminal','plyparse.py',42),
+  ('NAME -> H3','NAME',1,'p_expression_terminal','plyparse.py',43),
+  ('NAME -> H4','NAME',1,'p_expression_terminal','plyparse.py',44),
+  ('NAME -> H5','NAME',1,'p_expression_terminal','plyparse.py',45),
+  ('NAME -> H6','NAME',1,'p_expression_terminal','plyparse.py',46),
+  ('NAME -> UL','NAME',1,'p_expression_terminal','plyparse.py',47),
+  ('NAME -> LI','NAME',1,'p_expression_terminal','plyparse.py',48),
+  ('NAME -> TABLE','NAME',1,'p_expression_terminal','plyparse.py',49),
+  ('NAME -> TD','NAME',1,'p_expression_terminal','plyparse.py',50),
+  ('NAME -> TR','NAME',1,'p_expression_terminal','plyparse.py',51),
+  ('NAME -> IMG','NAME',1,'p_expression_terminal','plyparse.py',52),
+  ('NAME -> BR','NAME',1,'p_expression_terminal','plyparse.py',53),
+  ('empty -> <empty>','empty',0,'p_empty','plyparse.py',60),
 ]

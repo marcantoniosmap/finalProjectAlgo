@@ -2,15 +2,14 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    DOT
-    HASH
     ID
-    INT
     L_CURLY
     L_PAREN
-    MULTIPLY
+    STRING
     R_CURLY
+    DOT
     R_PAREN
+    HASH
 
 Grammar
 
@@ -20,63 +19,65 @@ Rule 2     base -> empty
 Rule 3     expression -> expression R_ANGLE expression
 Rule 4     expression -> expression SIBLING expression
 Rule 5     expression -> expression CLIMB expression
-Rule 6     expression -> NAME
-Rule 7     NAME -> DIV
-Rule 8     NAME -> SPAN
-Rule 9     NAME -> P
-Rule 10    NAME -> H1
-Rule 11    NAME -> H2
-Rule 12    NAME -> H3
-Rule 13    NAME -> H4
-Rule 14    NAME -> H5
-Rule 15    NAME -> H6
-Rule 16    NAME -> UL
-Rule 17    NAME -> LI
-Rule 18    NAME -> TABLE
-Rule 19    NAME -> TD
-Rule 20    NAME -> TR
-Rule 21    NAME -> IMG
-Rule 22    NAME -> BR
-Rule 23    empty -> <empty>
+Rule 6     expression -> expression MULTIPLY INT
+Rule 7     expression -> NAME
+Rule 8     NAME -> DIV
+Rule 9     NAME -> SPAN
+Rule 10    NAME -> P
+Rule 11    NAME -> H1
+Rule 12    NAME -> H2
+Rule 13    NAME -> H3
+Rule 14    NAME -> H4
+Rule 15    NAME -> H5
+Rule 16    NAME -> H6
+Rule 17    NAME -> UL
+Rule 18    NAME -> LI
+Rule 19    NAME -> TABLE
+Rule 20    NAME -> TD
+Rule 21    NAME -> TR
+Rule 22    NAME -> IMG
+Rule 23    NAME -> BR
+Rule 24    empty -> <empty>
 
 Terminals, with rules where they appear
 
-BR                   : 22
+BR                   : 23
 CLIMB                : 5
-DIV                  : 7
+DIV                  : 8
 DOT                  : 
-H1                   : 10
-H2                   : 11
-H3                   : 12
-H4                   : 13
-H5                   : 14
-H6                   : 15
+H1                   : 11
+H2                   : 12
+H3                   : 13
+H4                   : 14
+H5                   : 15
+H6                   : 16
 HASH                 : 
 ID                   : 
-IMG                  : 21
-INT                  : 
-LI                   : 17
+IMG                  : 22
+INT                  : 6
+LI                   : 18
 L_CURLY              : 
 L_PAREN              : 
-MULTIPLY             : 
-P                    : 9
+MULTIPLY             : 6
+P                    : 10
 R_ANGLE              : 3
 R_CURLY              : 
 R_PAREN              : 
 SIBLING              : 4
-SPAN                 : 8
-TABLE                : 18
-TD                   : 19
-TR                   : 20
-UL                   : 16
+SPAN                 : 9
+STRING               : 
+TABLE                : 19
+TD                   : 20
+TR                   : 21
+UL                   : 17
 error                : 
 
 Nonterminals, with rules where they appear
 
-NAME                 : 6
+NAME                 : 7
 base                 : 0
 empty                : 2
-expression           : 1 3 3 4 4 5 5
+expression           : 1 3 3 4 4 5 5 6
 
 Parsing method: LALR
 
@@ -88,287 +89,308 @@ state 0
     (3) expression -> . expression R_ANGLE expression
     (4) expression -> . expression SIBLING expression
     (5) expression -> . expression CLIMB expression
-    (6) expression -> . NAME
-    (23) empty -> .
-    (7) NAME -> . DIV
-    (8) NAME -> . SPAN
-    (9) NAME -> . P
-    (10) NAME -> . H1
-    (11) NAME -> . H2
-    (12) NAME -> . H3
-    (13) NAME -> . H4
-    (14) NAME -> . H5
-    (15) NAME -> . H6
-    (16) NAME -> . UL
-    (17) NAME -> . LI
-    (18) NAME -> . TABLE
-    (19) NAME -> . TD
-    (20) NAME -> . TR
-    (21) NAME -> . IMG
-    (22) NAME -> . BR
+    (6) expression -> . expression MULTIPLY INT
+    (7) expression -> . NAME
+    (24) empty -> .
+    (8) NAME -> . DIV
+    (9) NAME -> . SPAN
+    (10) NAME -> . P
+    (11) NAME -> . H1
+    (12) NAME -> . H2
+    (13) NAME -> . H3
+    (14) NAME -> . H4
+    (15) NAME -> . H5
+    (16) NAME -> . H6
+    (17) NAME -> . UL
+    (18) NAME -> . LI
+    (19) NAME -> . TABLE
+    (20) NAME -> . TD
+    (21) NAME -> . TR
+    (22) NAME -> . IMG
+    (23) NAME -> . BR
 
-    $end            reduce using rule 23 (empty -> .)
-    DIV             shift and go to state 5
-    SPAN            shift and go to state 6
-    P               shift and go to state 7
-    H1              shift and go to state 8
-    H2              shift and go to state 9
-    H3              shift and go to state 10
-    H4              shift and go to state 11
-    H5              shift and go to state 12
-    H6              shift and go to state 13
-    UL              shift and go to state 14
-    LI              shift and go to state 15
-    TABLE           shift and go to state 16
-    TD              shift and go to state 17
-    TR              shift and go to state 18
-    IMG             shift and go to state 19
-    BR              shift and go to state 20
+    $end            reduce using rule 24 (empty -> .)
+    DIV             shift and go to state 19
+    SPAN            shift and go to state 2
+    P               shift and go to state 16
+    H1              shift and go to state 17
+    H2              shift and go to state 5
+    H3              shift and go to state 9
+    H4              shift and go to state 10
+    H5              shift and go to state 3
+    H6              shift and go to state 6
+    UL              shift and go to state 4
+    LI              shift and go to state 13
+    TABLE           shift and go to state 8
+    TD              shift and go to state 7
+    TR              shift and go to state 12
+    IMG             shift and go to state 15
+    BR              shift and go to state 1
 
-    base                           shift and go to state 1
-    expression                     shift and go to state 2
-    empty                          shift and go to state 3
-    NAME                           shift and go to state 4
+    empty                          shift and go to state 11
+    NAME                           shift and go to state 18
+    base                           shift and go to state 14
+    expression                     shift and go to state 20
 
 state 1
 
-    (0) S' -> base .
+    (23) NAME -> BR .
 
+    R_ANGLE         reduce using rule 23 (NAME -> BR .)
+    SIBLING         reduce using rule 23 (NAME -> BR .)
+    CLIMB           reduce using rule 23 (NAME -> BR .)
+    MULTIPLY        reduce using rule 23 (NAME -> BR .)
+    $end            reduce using rule 23 (NAME -> BR .)
 
 
 state 2
 
-    (1) base -> expression .
-    (3) expression -> expression . R_ANGLE expression
-    (4) expression -> expression . SIBLING expression
-    (5) expression -> expression . CLIMB expression
+    (9) NAME -> SPAN .
 
-    $end            reduce using rule 1 (base -> expression .)
-    R_ANGLE         shift and go to state 21
-    SIBLING         shift and go to state 22
-    CLIMB           shift and go to state 23
+    R_ANGLE         reduce using rule 9 (NAME -> SPAN .)
+    SIBLING         reduce using rule 9 (NAME -> SPAN .)
+    CLIMB           reduce using rule 9 (NAME -> SPAN .)
+    MULTIPLY        reduce using rule 9 (NAME -> SPAN .)
+    $end            reduce using rule 9 (NAME -> SPAN .)
 
 
 state 3
+
+    (15) NAME -> H5 .
+
+    R_ANGLE         reduce using rule 15 (NAME -> H5 .)
+    SIBLING         reduce using rule 15 (NAME -> H5 .)
+    CLIMB           reduce using rule 15 (NAME -> H5 .)
+    MULTIPLY        reduce using rule 15 (NAME -> H5 .)
+    $end            reduce using rule 15 (NAME -> H5 .)
+
+
+state 4
+
+    (17) NAME -> UL .
+
+    R_ANGLE         reduce using rule 17 (NAME -> UL .)
+    SIBLING         reduce using rule 17 (NAME -> UL .)
+    CLIMB           reduce using rule 17 (NAME -> UL .)
+    MULTIPLY        reduce using rule 17 (NAME -> UL .)
+    $end            reduce using rule 17 (NAME -> UL .)
+
+
+state 5
+
+    (12) NAME -> H2 .
+
+    R_ANGLE         reduce using rule 12 (NAME -> H2 .)
+    SIBLING         reduce using rule 12 (NAME -> H2 .)
+    CLIMB           reduce using rule 12 (NAME -> H2 .)
+    MULTIPLY        reduce using rule 12 (NAME -> H2 .)
+    $end            reduce using rule 12 (NAME -> H2 .)
+
+
+state 6
+
+    (16) NAME -> H6 .
+
+    R_ANGLE         reduce using rule 16 (NAME -> H6 .)
+    SIBLING         reduce using rule 16 (NAME -> H6 .)
+    CLIMB           reduce using rule 16 (NAME -> H6 .)
+    MULTIPLY        reduce using rule 16 (NAME -> H6 .)
+    $end            reduce using rule 16 (NAME -> H6 .)
+
+
+state 7
+
+    (20) NAME -> TD .
+
+    R_ANGLE         reduce using rule 20 (NAME -> TD .)
+    SIBLING         reduce using rule 20 (NAME -> TD .)
+    CLIMB           reduce using rule 20 (NAME -> TD .)
+    MULTIPLY        reduce using rule 20 (NAME -> TD .)
+    $end            reduce using rule 20 (NAME -> TD .)
+
+
+state 8
+
+    (19) NAME -> TABLE .
+
+    R_ANGLE         reduce using rule 19 (NAME -> TABLE .)
+    SIBLING         reduce using rule 19 (NAME -> TABLE .)
+    CLIMB           reduce using rule 19 (NAME -> TABLE .)
+    MULTIPLY        reduce using rule 19 (NAME -> TABLE .)
+    $end            reduce using rule 19 (NAME -> TABLE .)
+
+
+state 9
+
+    (13) NAME -> H3 .
+
+    R_ANGLE         reduce using rule 13 (NAME -> H3 .)
+    SIBLING         reduce using rule 13 (NAME -> H3 .)
+    CLIMB           reduce using rule 13 (NAME -> H3 .)
+    MULTIPLY        reduce using rule 13 (NAME -> H3 .)
+    $end            reduce using rule 13 (NAME -> H3 .)
+
+
+state 10
+
+    (14) NAME -> H4 .
+
+    R_ANGLE         reduce using rule 14 (NAME -> H4 .)
+    SIBLING         reduce using rule 14 (NAME -> H4 .)
+    CLIMB           reduce using rule 14 (NAME -> H4 .)
+    MULTIPLY        reduce using rule 14 (NAME -> H4 .)
+    $end            reduce using rule 14 (NAME -> H4 .)
+
+
+state 11
 
     (2) base -> empty .
 
     $end            reduce using rule 2 (base -> empty .)
 
 
-state 4
-
-    (6) expression -> NAME .
-
-    R_ANGLE         reduce using rule 6 (expression -> NAME .)
-    SIBLING         reduce using rule 6 (expression -> NAME .)
-    CLIMB           reduce using rule 6 (expression -> NAME .)
-    $end            reduce using rule 6 (expression -> NAME .)
-
-
-state 5
-
-    (7) NAME -> DIV .
-
-    R_ANGLE         reduce using rule 7 (NAME -> DIV .)
-    SIBLING         reduce using rule 7 (NAME -> DIV .)
-    CLIMB           reduce using rule 7 (NAME -> DIV .)
-    $end            reduce using rule 7 (NAME -> DIV .)
-
-
-state 6
-
-    (8) NAME -> SPAN .
-
-    R_ANGLE         reduce using rule 8 (NAME -> SPAN .)
-    SIBLING         reduce using rule 8 (NAME -> SPAN .)
-    CLIMB           reduce using rule 8 (NAME -> SPAN .)
-    $end            reduce using rule 8 (NAME -> SPAN .)
-
-
-state 7
-
-    (9) NAME -> P .
-
-    R_ANGLE         reduce using rule 9 (NAME -> P .)
-    SIBLING         reduce using rule 9 (NAME -> P .)
-    CLIMB           reduce using rule 9 (NAME -> P .)
-    $end            reduce using rule 9 (NAME -> P .)
-
-
-state 8
-
-    (10) NAME -> H1 .
-
-    R_ANGLE         reduce using rule 10 (NAME -> H1 .)
-    SIBLING         reduce using rule 10 (NAME -> H1 .)
-    CLIMB           reduce using rule 10 (NAME -> H1 .)
-    $end            reduce using rule 10 (NAME -> H1 .)
-
-
-state 9
-
-    (11) NAME -> H2 .
-
-    R_ANGLE         reduce using rule 11 (NAME -> H2 .)
-    SIBLING         reduce using rule 11 (NAME -> H2 .)
-    CLIMB           reduce using rule 11 (NAME -> H2 .)
-    $end            reduce using rule 11 (NAME -> H2 .)
-
-
-state 10
-
-    (12) NAME -> H3 .
-
-    R_ANGLE         reduce using rule 12 (NAME -> H3 .)
-    SIBLING         reduce using rule 12 (NAME -> H3 .)
-    CLIMB           reduce using rule 12 (NAME -> H3 .)
-    $end            reduce using rule 12 (NAME -> H3 .)
-
-
-state 11
-
-    (13) NAME -> H4 .
-
-    R_ANGLE         reduce using rule 13 (NAME -> H4 .)
-    SIBLING         reduce using rule 13 (NAME -> H4 .)
-    CLIMB           reduce using rule 13 (NAME -> H4 .)
-    $end            reduce using rule 13 (NAME -> H4 .)
-
-
 state 12
 
-    (14) NAME -> H5 .
+    (21) NAME -> TR .
 
-    R_ANGLE         reduce using rule 14 (NAME -> H5 .)
-    SIBLING         reduce using rule 14 (NAME -> H5 .)
-    CLIMB           reduce using rule 14 (NAME -> H5 .)
-    $end            reduce using rule 14 (NAME -> H5 .)
+    R_ANGLE         reduce using rule 21 (NAME -> TR .)
+    SIBLING         reduce using rule 21 (NAME -> TR .)
+    CLIMB           reduce using rule 21 (NAME -> TR .)
+    MULTIPLY        reduce using rule 21 (NAME -> TR .)
+    $end            reduce using rule 21 (NAME -> TR .)
 
 
 state 13
 
-    (15) NAME -> H6 .
+    (18) NAME -> LI .
 
-    R_ANGLE         reduce using rule 15 (NAME -> H6 .)
-    SIBLING         reduce using rule 15 (NAME -> H6 .)
-    CLIMB           reduce using rule 15 (NAME -> H6 .)
-    $end            reduce using rule 15 (NAME -> H6 .)
+    R_ANGLE         reduce using rule 18 (NAME -> LI .)
+    SIBLING         reduce using rule 18 (NAME -> LI .)
+    CLIMB           reduce using rule 18 (NAME -> LI .)
+    MULTIPLY        reduce using rule 18 (NAME -> LI .)
+    $end            reduce using rule 18 (NAME -> LI .)
 
 
 state 14
 
-    (16) NAME -> UL .
+    (0) S' -> base .
 
-    R_ANGLE         reduce using rule 16 (NAME -> UL .)
-    SIBLING         reduce using rule 16 (NAME -> UL .)
-    CLIMB           reduce using rule 16 (NAME -> UL .)
-    $end            reduce using rule 16 (NAME -> UL .)
 
 
 state 15
 
-    (17) NAME -> LI .
+    (22) NAME -> IMG .
 
-    R_ANGLE         reduce using rule 17 (NAME -> LI .)
-    SIBLING         reduce using rule 17 (NAME -> LI .)
-    CLIMB           reduce using rule 17 (NAME -> LI .)
-    $end            reduce using rule 17 (NAME -> LI .)
+    R_ANGLE         reduce using rule 22 (NAME -> IMG .)
+    SIBLING         reduce using rule 22 (NAME -> IMG .)
+    CLIMB           reduce using rule 22 (NAME -> IMG .)
+    MULTIPLY        reduce using rule 22 (NAME -> IMG .)
+    $end            reduce using rule 22 (NAME -> IMG .)
 
 
 state 16
 
-    (18) NAME -> TABLE .
+    (10) NAME -> P .
 
-    R_ANGLE         reduce using rule 18 (NAME -> TABLE .)
-    SIBLING         reduce using rule 18 (NAME -> TABLE .)
-    CLIMB           reduce using rule 18 (NAME -> TABLE .)
-    $end            reduce using rule 18 (NAME -> TABLE .)
+    R_ANGLE         reduce using rule 10 (NAME -> P .)
+    SIBLING         reduce using rule 10 (NAME -> P .)
+    CLIMB           reduce using rule 10 (NAME -> P .)
+    MULTIPLY        reduce using rule 10 (NAME -> P .)
+    $end            reduce using rule 10 (NAME -> P .)
 
 
 state 17
 
-    (19) NAME -> TD .
+    (11) NAME -> H1 .
 
-    R_ANGLE         reduce using rule 19 (NAME -> TD .)
-    SIBLING         reduce using rule 19 (NAME -> TD .)
-    CLIMB           reduce using rule 19 (NAME -> TD .)
-    $end            reduce using rule 19 (NAME -> TD .)
+    R_ANGLE         reduce using rule 11 (NAME -> H1 .)
+    SIBLING         reduce using rule 11 (NAME -> H1 .)
+    CLIMB           reduce using rule 11 (NAME -> H1 .)
+    MULTIPLY        reduce using rule 11 (NAME -> H1 .)
+    $end            reduce using rule 11 (NAME -> H1 .)
 
 
 state 18
 
-    (20) NAME -> TR .
+    (7) expression -> NAME .
 
-    R_ANGLE         reduce using rule 20 (NAME -> TR .)
-    SIBLING         reduce using rule 20 (NAME -> TR .)
-    CLIMB           reduce using rule 20 (NAME -> TR .)
-    $end            reduce using rule 20 (NAME -> TR .)
+    R_ANGLE         reduce using rule 7 (expression -> NAME .)
+    SIBLING         reduce using rule 7 (expression -> NAME .)
+    CLIMB           reduce using rule 7 (expression -> NAME .)
+    MULTIPLY        reduce using rule 7 (expression -> NAME .)
+    $end            reduce using rule 7 (expression -> NAME .)
 
 
 state 19
 
-    (21) NAME -> IMG .
+    (8) NAME -> DIV .
 
-    R_ANGLE         reduce using rule 21 (NAME -> IMG .)
-    SIBLING         reduce using rule 21 (NAME -> IMG .)
-    CLIMB           reduce using rule 21 (NAME -> IMG .)
-    $end            reduce using rule 21 (NAME -> IMG .)
+    R_ANGLE         reduce using rule 8 (NAME -> DIV .)
+    SIBLING         reduce using rule 8 (NAME -> DIV .)
+    CLIMB           reduce using rule 8 (NAME -> DIV .)
+    MULTIPLY        reduce using rule 8 (NAME -> DIV .)
+    $end            reduce using rule 8 (NAME -> DIV .)
 
 
 state 20
 
-    (22) NAME -> BR .
+    (1) base -> expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+    (5) expression -> expression . CLIMB expression
+    (6) expression -> expression . MULTIPLY INT
 
-    R_ANGLE         reduce using rule 22 (NAME -> BR .)
-    SIBLING         reduce using rule 22 (NAME -> BR .)
-    CLIMB           reduce using rule 22 (NAME -> BR .)
-    $end            reduce using rule 22 (NAME -> BR .)
+    $end            reduce using rule 1 (base -> expression .)
+    R_ANGLE         shift and go to state 23
+    SIBLING         shift and go to state 22
+    CLIMB           shift and go to state 21
+    MULTIPLY        shift and go to state 24
 
 
 state 21
 
-    (3) expression -> expression R_ANGLE . expression
+    (5) expression -> expression CLIMB . expression
     (3) expression -> . expression R_ANGLE expression
     (4) expression -> . expression SIBLING expression
     (5) expression -> . expression CLIMB expression
-    (6) expression -> . NAME
-    (7) NAME -> . DIV
-    (8) NAME -> . SPAN
-    (9) NAME -> . P
-    (10) NAME -> . H1
-    (11) NAME -> . H2
-    (12) NAME -> . H3
-    (13) NAME -> . H4
-    (14) NAME -> . H5
-    (15) NAME -> . H6
-    (16) NAME -> . UL
-    (17) NAME -> . LI
-    (18) NAME -> . TABLE
-    (19) NAME -> . TD
-    (20) NAME -> . TR
-    (21) NAME -> . IMG
-    (22) NAME -> . BR
+    (6) expression -> . expression MULTIPLY INT
+    (7) expression -> . NAME
+    (8) NAME -> . DIV
+    (9) NAME -> . SPAN
+    (10) NAME -> . P
+    (11) NAME -> . H1
+    (12) NAME -> . H2
+    (13) NAME -> . H3
+    (14) NAME -> . H4
+    (15) NAME -> . H5
+    (16) NAME -> . H6
+    (17) NAME -> . UL
+    (18) NAME -> . LI
+    (19) NAME -> . TABLE
+    (20) NAME -> . TD
+    (21) NAME -> . TR
+    (22) NAME -> . IMG
+    (23) NAME -> . BR
 
-    DIV             shift and go to state 5
-    SPAN            shift and go to state 6
-    P               shift and go to state 7
-    H1              shift and go to state 8
-    H2              shift and go to state 9
-    H3              shift and go to state 10
-    H4              shift and go to state 11
-    H5              shift and go to state 12
-    H6              shift and go to state 13
-    UL              shift and go to state 14
-    LI              shift and go to state 15
-    TABLE           shift and go to state 16
-    TD              shift and go to state 17
-    TR              shift and go to state 18
-    IMG             shift and go to state 19
-    BR              shift and go to state 20
+    DIV             shift and go to state 19
+    SPAN            shift and go to state 2
+    P               shift and go to state 16
+    H1              shift and go to state 17
+    H2              shift and go to state 5
+    H3              shift and go to state 9
+    H4              shift and go to state 10
+    H5              shift and go to state 3
+    H6              shift and go to state 6
+    UL              shift and go to state 4
+    LI              shift and go to state 13
+    TABLE           shift and go to state 8
+    TD              shift and go to state 7
+    TR              shift and go to state 12
+    IMG             shift and go to state 15
+    BR              shift and go to state 1
 
-    expression                     shift and go to state 24
-    NAME                           shift and go to state 4
+    NAME                           shift and go to state 18
+    expression                     shift and go to state 25
 
 state 22
 
@@ -376,156 +398,191 @@ state 22
     (3) expression -> . expression R_ANGLE expression
     (4) expression -> . expression SIBLING expression
     (5) expression -> . expression CLIMB expression
-    (6) expression -> . NAME
-    (7) NAME -> . DIV
-    (8) NAME -> . SPAN
-    (9) NAME -> . P
-    (10) NAME -> . H1
-    (11) NAME -> . H2
-    (12) NAME -> . H3
-    (13) NAME -> . H4
-    (14) NAME -> . H5
-    (15) NAME -> . H6
-    (16) NAME -> . UL
-    (17) NAME -> . LI
-    (18) NAME -> . TABLE
-    (19) NAME -> . TD
-    (20) NAME -> . TR
-    (21) NAME -> . IMG
-    (22) NAME -> . BR
+    (6) expression -> . expression MULTIPLY INT
+    (7) expression -> . NAME
+    (8) NAME -> . DIV
+    (9) NAME -> . SPAN
+    (10) NAME -> . P
+    (11) NAME -> . H1
+    (12) NAME -> . H2
+    (13) NAME -> . H3
+    (14) NAME -> . H4
+    (15) NAME -> . H5
+    (16) NAME -> . H6
+    (17) NAME -> . UL
+    (18) NAME -> . LI
+    (19) NAME -> . TABLE
+    (20) NAME -> . TD
+    (21) NAME -> . TR
+    (22) NAME -> . IMG
+    (23) NAME -> . BR
 
-    DIV             shift and go to state 5
-    SPAN            shift and go to state 6
-    P               shift and go to state 7
-    H1              shift and go to state 8
-    H2              shift and go to state 9
-    H3              shift and go to state 10
-    H4              shift and go to state 11
-    H5              shift and go to state 12
-    H6              shift and go to state 13
-    UL              shift and go to state 14
-    LI              shift and go to state 15
-    TABLE           shift and go to state 16
-    TD              shift and go to state 17
-    TR              shift and go to state 18
-    IMG             shift and go to state 19
-    BR              shift and go to state 20
+    DIV             shift and go to state 19
+    SPAN            shift and go to state 2
+    P               shift and go to state 16
+    H1              shift and go to state 17
+    H2              shift and go to state 5
+    H3              shift and go to state 9
+    H4              shift and go to state 10
+    H5              shift and go to state 3
+    H6              shift and go to state 6
+    UL              shift and go to state 4
+    LI              shift and go to state 13
+    TABLE           shift and go to state 8
+    TD              shift and go to state 7
+    TR              shift and go to state 12
+    IMG             shift and go to state 15
+    BR              shift and go to state 1
 
-    expression                     shift and go to state 25
-    NAME                           shift and go to state 4
+    NAME                           shift and go to state 18
+    expression                     shift and go to state 26
 
 state 23
 
-    (5) expression -> expression CLIMB . expression
+    (3) expression -> expression R_ANGLE . expression
     (3) expression -> . expression R_ANGLE expression
     (4) expression -> . expression SIBLING expression
     (5) expression -> . expression CLIMB expression
-    (6) expression -> . NAME
-    (7) NAME -> . DIV
-    (8) NAME -> . SPAN
-    (9) NAME -> . P
-    (10) NAME -> . H1
-    (11) NAME -> . H2
-    (12) NAME -> . H3
-    (13) NAME -> . H4
-    (14) NAME -> . H5
-    (15) NAME -> . H6
-    (16) NAME -> . UL
-    (17) NAME -> . LI
-    (18) NAME -> . TABLE
-    (19) NAME -> . TD
-    (20) NAME -> . TR
-    (21) NAME -> . IMG
-    (22) NAME -> . BR
+    (6) expression -> . expression MULTIPLY INT
+    (7) expression -> . NAME
+    (8) NAME -> . DIV
+    (9) NAME -> . SPAN
+    (10) NAME -> . P
+    (11) NAME -> . H1
+    (12) NAME -> . H2
+    (13) NAME -> . H3
+    (14) NAME -> . H4
+    (15) NAME -> . H5
+    (16) NAME -> . H6
+    (17) NAME -> . UL
+    (18) NAME -> . LI
+    (19) NAME -> . TABLE
+    (20) NAME -> . TD
+    (21) NAME -> . TR
+    (22) NAME -> . IMG
+    (23) NAME -> . BR
 
-    DIV             shift and go to state 5
-    SPAN            shift and go to state 6
-    P               shift and go to state 7
-    H1              shift and go to state 8
-    H2              shift and go to state 9
-    H3              shift and go to state 10
-    H4              shift and go to state 11
-    H5              shift and go to state 12
-    H6              shift and go to state 13
-    UL              shift and go to state 14
-    LI              shift and go to state 15
-    TABLE           shift and go to state 16
-    TD              shift and go to state 17
-    TR              shift and go to state 18
-    IMG             shift and go to state 19
-    BR              shift and go to state 20
+    DIV             shift and go to state 19
+    SPAN            shift and go to state 2
+    P               shift and go to state 16
+    H1              shift and go to state 17
+    H2              shift and go to state 5
+    H3              shift and go to state 9
+    H4              shift and go to state 10
+    H5              shift and go to state 3
+    H6              shift and go to state 6
+    UL              shift and go to state 4
+    LI              shift and go to state 13
+    TABLE           shift and go to state 8
+    TD              shift and go to state 7
+    TR              shift and go to state 12
+    IMG             shift and go to state 15
+    BR              shift and go to state 1
 
-    expression                     shift and go to state 26
-    NAME                           shift and go to state 4
+    NAME                           shift and go to state 18
+    expression                     shift and go to state 27
 
 state 24
 
-    (3) expression -> expression R_ANGLE expression .
-    (3) expression -> expression . R_ANGLE expression
-    (4) expression -> expression . SIBLING expression
-    (5) expression -> expression . CLIMB expression
+    (6) expression -> expression MULTIPLY . INT
 
-  ! shift/reduce conflict for R_ANGLE resolved as shift
-  ! shift/reduce conflict for SIBLING resolved as shift
-  ! shift/reduce conflict for CLIMB resolved as shift
-    $end            reduce using rule 3 (expression -> expression R_ANGLE expression .)
-    R_ANGLE         shift and go to state 21
-    SIBLING         shift and go to state 22
-    CLIMB           shift and go to state 23
-
-  ! R_ANGLE         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
-  ! SIBLING         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
-  ! CLIMB           [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+    INT             shift and go to state 28
 
 
 state 25
-
-    (4) expression -> expression SIBLING expression .
-    (3) expression -> expression . R_ANGLE expression
-    (4) expression -> expression . SIBLING expression
-    (5) expression -> expression . CLIMB expression
-
-  ! shift/reduce conflict for R_ANGLE resolved as shift
-  ! shift/reduce conflict for SIBLING resolved as shift
-  ! shift/reduce conflict for CLIMB resolved as shift
-    $end            reduce using rule 4 (expression -> expression SIBLING expression .)
-    R_ANGLE         shift and go to state 21
-    SIBLING         shift and go to state 22
-    CLIMB           shift and go to state 23
-
-  ! R_ANGLE         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
-  ! SIBLING         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
-  ! CLIMB           [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
-
-
-state 26
 
     (5) expression -> expression CLIMB expression .
     (3) expression -> expression . R_ANGLE expression
     (4) expression -> expression . SIBLING expression
     (5) expression -> expression . CLIMB expression
+    (6) expression -> expression . MULTIPLY INT
 
   ! shift/reduce conflict for R_ANGLE resolved as shift
   ! shift/reduce conflict for SIBLING resolved as shift
   ! shift/reduce conflict for CLIMB resolved as shift
+  ! shift/reduce conflict for MULTIPLY resolved as shift
     $end            reduce using rule 5 (expression -> expression CLIMB expression .)
-    R_ANGLE         shift and go to state 21
+    R_ANGLE         shift and go to state 23
     SIBLING         shift and go to state 22
-    CLIMB           shift and go to state 23
+    CLIMB           shift and go to state 21
+    MULTIPLY        shift and go to state 24
 
   ! R_ANGLE         [ reduce using rule 5 (expression -> expression CLIMB expression .) ]
   ! SIBLING         [ reduce using rule 5 (expression -> expression CLIMB expression .) ]
   ! CLIMB           [ reduce using rule 5 (expression -> expression CLIMB expression .) ]
+  ! MULTIPLY        [ reduce using rule 5 (expression -> expression CLIMB expression .) ]
+
+
+state 26
+
+    (4) expression -> expression SIBLING expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+    (5) expression -> expression . CLIMB expression
+    (6) expression -> expression . MULTIPLY INT
+
+  ! shift/reduce conflict for R_ANGLE resolved as shift
+  ! shift/reduce conflict for SIBLING resolved as shift
+  ! shift/reduce conflict for CLIMB resolved as shift
+  ! shift/reduce conflict for MULTIPLY resolved as shift
+    $end            reduce using rule 4 (expression -> expression SIBLING expression .)
+    R_ANGLE         shift and go to state 23
+    SIBLING         shift and go to state 22
+    CLIMB           shift and go to state 21
+    MULTIPLY        shift and go to state 24
+
+  ! R_ANGLE         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+  ! SIBLING         [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+  ! CLIMB           [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+  ! MULTIPLY        [ reduce using rule 4 (expression -> expression SIBLING expression .) ]
+
+
+state 27
+
+    (3) expression -> expression R_ANGLE expression .
+    (3) expression -> expression . R_ANGLE expression
+    (4) expression -> expression . SIBLING expression
+    (5) expression -> expression . CLIMB expression
+    (6) expression -> expression . MULTIPLY INT
+
+  ! shift/reduce conflict for R_ANGLE resolved as shift
+  ! shift/reduce conflict for SIBLING resolved as shift
+  ! shift/reduce conflict for CLIMB resolved as shift
+  ! shift/reduce conflict for MULTIPLY resolved as shift
+    $end            reduce using rule 3 (expression -> expression R_ANGLE expression .)
+    R_ANGLE         shift and go to state 23
+    SIBLING         shift and go to state 22
+    CLIMB           shift and go to state 21
+    MULTIPLY        shift and go to state 24
+
+  ! R_ANGLE         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+  ! SIBLING         [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+  ! CLIMB           [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+  ! MULTIPLY        [ reduce using rule 3 (expression -> expression R_ANGLE expression .) ]
+
+
+state 28
+
+    (6) expression -> expression MULTIPLY INT .
+
+    R_ANGLE         reduce using rule 6 (expression -> expression MULTIPLY INT .)
+    SIBLING         reduce using rule 6 (expression -> expression MULTIPLY INT .)
+    CLIMB           reduce using rule 6 (expression -> expression MULTIPLY INT .)
+    MULTIPLY        reduce using rule 6 (expression -> expression MULTIPLY INT .)
+    $end            reduce using rule 6 (expression -> expression MULTIPLY INT .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for R_ANGLE in state 24 resolved as shift
-WARNING: shift/reduce conflict for SIBLING in state 24 resolved as shift
-WARNING: shift/reduce conflict for CLIMB in state 24 resolved as shift
 WARNING: shift/reduce conflict for R_ANGLE in state 25 resolved as shift
 WARNING: shift/reduce conflict for SIBLING in state 25 resolved as shift
 WARNING: shift/reduce conflict for CLIMB in state 25 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 25 resolved as shift
 WARNING: shift/reduce conflict for R_ANGLE in state 26 resolved as shift
 WARNING: shift/reduce conflict for SIBLING in state 26 resolved as shift
 WARNING: shift/reduce conflict for CLIMB in state 26 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 26 resolved as shift
+WARNING: shift/reduce conflict for R_ANGLE in state 27 resolved as shift
+WARNING: shift/reduce conflict for SIBLING in state 27 resolved as shift
+WARNING: shift/reduce conflict for CLIMB in state 27 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 27 resolved as shift

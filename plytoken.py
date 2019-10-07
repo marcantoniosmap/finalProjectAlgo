@@ -17,6 +17,7 @@ tokens = [
     'DOT',
     'HASH',
     'INT',
+    'STRING',
 ]
 
 reserved={
@@ -61,6 +62,10 @@ def t_ID(t):
         return t_error(t)
     return t
 
+def t_STRING(t):
+    r'[a-zA-Z][a-zA-Z0-9]*'
+    return t
+
 def t_INT(t):
     r'\d+'
     t.value = int(t.value)
@@ -78,7 +83,7 @@ lexer=lex.lex()
 #     lexer.input(s)
 #     while True:
 #         tok = lexer.token()
-#         if not tok: 
+#         if not tok:
 #             break
 #         print(tok)
 

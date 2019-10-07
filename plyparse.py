@@ -22,6 +22,7 @@ def p_expression_nonterminal(p):
     expression : expression R_ANGLE expression
                | expression SIBLING expression
                | expression CLIMB expression
+               | expression MULTIPLY INT
     '''
     p[0] = (p[2], p[1], p[3])
 
@@ -71,4 +72,5 @@ while True:
         s = input(">> ")
     except EOFError:
         break # ctrl + D ends the program
+
     parser.parse(s)
