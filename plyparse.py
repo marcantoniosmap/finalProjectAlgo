@@ -12,7 +12,7 @@ def p_base(p):
     base :  expression 
          |  empty
     '''
-    print(p[1]) # prints out expression the whole expression
+    p[0] = p[1] # moved the print to the main loop
 
 # Nonterminal symbols (or syntactic variables) are replaced by groups of terminal symbols
 
@@ -72,5 +72,6 @@ while True:
         s = input(">> ")
     except EOFError:
         break # ctrl + D ends the program
-
-    parser.parse(s)
+    if not s: continue
+    result = parser.parse(s)
+    print(result)
