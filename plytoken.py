@@ -4,20 +4,26 @@
 import ply.lex as lex
 import  sys
 
+
+states = (
+    ('getString','inclusive'),
+    ('content','inclusive')
+ )
+
 tokens = [
-    'ID',
     'R_ANGLE',
     'SIBLING',
     'MULTIPLY',
     'L_PAREN',
     'R_PAREN',
-    'L_CURLY',
+    'CONTENT',
     'R_CURLY',
     'CLIMB',
     'DOT',
     'HASH',
     'INT',
     'STRING',
+    'CONTENT_STRING',
 ]
 
 reserved={
@@ -49,11 +55,35 @@ t_SIBLING=r'\+'
 t_MULTIPLY=r'\*'
 t_L_PAREN=r'\('
 t_R_PAREN=r'\)'
-t_L_CURLY=r'\{'
-t_R_CURLY=r'\}'
+# t_L_CURLY=r'\{'
+# t_R_CURLY=r'\}'
 t_CLIMB=r'\^'
-t_DOT=r'\.'
-t_HASH=r'\#'
+# t_DOT=r'\.'
+# t_HASH=r'\#'
+
+def t_HASH(t):
+    r'\#'
+    t.lexer.begin('getString')
+    return t
+
+def t_DOT(t):
+    r'\.'
+    t.lexer.begin('getString')
+    return t
+
+def t_CONTENT(t):
+    r'\{'
+    t.lexer.begin('content')
+    return t
+
+def t_content_CONTENT_STRING(t):
+    r'[a-zA-Z][ a-zA-Z0-9]*'
+    return t
+
+def t_content_R_CULRLY(t):
+    r'\}'
+    t.lexer.begin('INITIAL')
+
 
 def t_ID(t):
     r'[a-zA-Z][a-zA-Z0-9]*'
@@ -62,8 +92,9 @@ def t_ID(t):
         return t_error(t)
     return t
 
-def t_STRING(t):
+def t_getString_STRING(t):
     r'[a-zA-Z][a-zA-Z0-9]*'
+    t.lexer.begin('INITIAL')
     return t
 
 def t_INT(t):
@@ -78,7 +109,7 @@ def t_error(t):
 
 lexer=lex.lex()
 
-# while 1:
+# while True:
 #     s=input(">> ")
 #     lexer.input(s)
 #     while True:

@@ -16,12 +16,22 @@ def p_base(p):
 
 # Nonterminal symbols (or syntactic variables) are replaced by groups of terminal symbols
 
-# unfinished non-terminal expressions (operators)
+def p_special(p):
+    '''
+    expression : expression MULTIPLY INT R_ANGLE expression
+    '''
+    p[0]= (p[2],p[3],(p[4],p[1],p[5]))
+
 def p_expression_nonterminal(p):
     '''
     expression : expression R_ANGLE expression
                | expression SIBLING expression
                | expression CLIMB expression
+
+               | expression DOT string
+               | expression HASH string
+               | expression CONTENT string
+
                | expression MULTIPLY INT
     '''
     p[0] = (p[2], p[1], p[3])
@@ -31,6 +41,13 @@ def p_temp(p):
     expression : NAME
     '''
     p[0] = p[1]
+
+def p_string(p):
+    '''
+    string : CONTENT_STRING
+            | STRING
+    '''
+    p[0]=p[1]
 
 # TODO temporary solution to ID tokens will change in the future
 def p_expression_terminal(p):
