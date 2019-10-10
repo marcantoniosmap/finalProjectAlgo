@@ -8,7 +8,7 @@ _lr_method = 'LALR'
 
 _lr_signature = 'BR CLIMB CONTENT CONTENT_STRING DIV DOT H1 H2 H3 H4 H5 H6 HASH IMG INT LI L_PAREN MULTIPLY P R_ANGLE R_CURLY R_PAREN SIBLING SPAN STRING TABLE TD TR UL\n    base :  expression \n         |  empty\n    \n    expression : expression MULTIPLY INT R_ANGLE expression\n    \n    expression : expression R_ANGLE expression\n               | expression SIBLING expression\n               | expression CLIMB expression\n\n               | expression DOT string\n               | expression HASH string\n               | expression CONTENT string\n\n               | expression MULTIPLY INT\n    \n    expression : NAME\n    \n    string : CONTENT_STRING\n            | STRING\n    \n    NAME : DIV\n        | SPAN\n        | P\n        | H1\n        | H2\n        | H3\n        | H4\n        | H5\n        | H6\n        | UL\n        | LI\n        | TABLE\n        | TD\n        | TR\n        | IMG\n        | BR\n    \n    empty :\n    '
     
-_lr_action_items = {'TABLE':([0,23,24,27,37,],[1,1,1,1,1,]),'TD':([0,23,24,27,37,],[2,2,2,2,2,]),'IMG':([0,23,24,27,37,],[4,4,4,4,4,]),'H4':([0,23,24,27,37,],[5,5,5,5,5,]),'LI':([0,23,24,27,37,],[7,7,7,7,7,]),'TR':([0,23,24,27,37,],[8,8,8,8,8,]),'BR':([0,23,24,27,37,],[9,9,9,9,9,]),'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-30,-25,-26,0,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,-2,-1,-19,-18,-14,-10,-13,-9,-12,-6,-4,-7,-8,-5,-3,]),'CLIMB':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,23,-19,-18,-14,-10,-13,-9,-12,23,23,-7,-8,23,23,]),'R_ANGLE':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,24,-19,-18,-14,37,-13,-9,-12,24,24,-7,-8,24,24,]),'CONTENT_STRING':([22,25,26,],[31,31,31,]),'SPAN':([0,23,24,27,37,],[10,10,10,10,10,]),'UL':([0,23,24,27,37,],[15,15,15,15,15,]),'H5':([0,23,24,27,37,],[11,11,11,11,11,]),'STRING':([22,25,26,],[29,29,29,]),'CONTENT':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,22,-19,-18,-14,-10,-13,-9,-12,22,22,-7,-8,22,22,]),'H2':([0,23,24,27,37,],[19,19,19,19,19,]),'H1':([0,23,24,27,37,],[13,13,13,13,13,]),'HASH':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,26,-19,-18,-14,-10,-13,-9,-12,26,26,-7,-8,26,26,]),'P':([0,23,24,27,37,],[14,14,14,14,14,]),'INT':([21,],[28,]),'MULTIPLY':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,21,-19,-18,-14,-10,-13,-9,-12,21,21,-7,-8,21,21,]),'SIBLING':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,27,-19,-18,-14,-10,-13,-9,-12,27,27,-7,-8,27,27,]),'DOT':([1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-25,-26,-28,-20,-11,-24,-27,-29,-15,-21,-22,-17,-16,-23,25,-19,-18,-14,-10,-13,-9,-12,25,25,-7,-8,25,25,]),'H3':([0,23,24,27,37,],[18,18,18,18,18,]),'H6':([0,23,24,27,37,],[12,12,12,12,12,]),'DIV':([0,23,24,27,37,],[20,20,20,20,20,]),}
+_lr_action_items = {'DIV':([0,22,25,26,37,],[1,1,1,1,1,]),'SIBLING':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,26,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,26,-7,-10,26,26,-8,26,]),'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-30,-14,-28,-1,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-2,0,-23,-26,-16,-11,-15,-12,-13,-9,-4,-7,-10,-6,-5,-8,-3,]),'BR':([0,22,25,26,37,],[4,4,4,4,4,]),'MULTIPLY':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,24,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,24,-7,-10,24,24,-8,24,]),'H1':([0,22,25,26,37,],[6,6,6,6,6,]),'H3':([0,22,25,26,37,],[7,7,7,7,7,]),'H2':([0,22,25,26,37,],[8,8,8,8,8,]),'H5':([0,22,25,26,37,],[9,9,9,9,9,]),'H4':([0,22,25,26,37,],[10,10,10,10,10,]),'STRING':([21,23,27,],[29,29,29,]),'H6':([0,22,25,26,37,],[11,11,11,11,11,]),'CONTENT_STRING':([21,23,27,],[28,28,28,]),'R_ANGLE':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,22,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,22,-7,37,22,22,-8,22,]),'INT':([24,],[33,]),'CLIMB':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,25,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,25,-7,-10,25,25,-8,25,]),'LI':([0,22,25,26,37,],[13,13,13,13,13,]),'TABLE':([0,22,25,26,37,],[12,12,12,12,12,]),'TR':([0,22,25,26,37,],[5,5,5,5,5,]),'UL':([0,22,25,26,37,],[16,16,16,16,16,]),'CONTENT':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,21,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,21,-7,-10,21,21,-8,21,]),'DOT':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,23,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,23,-7,-10,23,23,-8,23,]),'HASH':([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,18,19,20,28,29,30,31,32,33,34,35,36,38,],[-14,-28,27,-29,-27,-17,-19,-18,-21,-20,-22,-25,-24,-23,-26,-16,-11,-15,-12,-13,-9,27,-7,-10,27,27,-8,27,]),'TD':([0,22,25,26,37,],[17,17,17,17,17,]),'P':([0,22,25,26,37,],[18,18,18,18,18,]),'SPAN':([0,22,25,26,37,],[20,20,20,20,20,]),'IMG':([0,22,25,26,37,],[2,2,2,2,2,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'NAME':([0,23,24,27,37,],[6,6,6,6,6,]),'empty':([0,],[16,]),'string':([22,25,26,],[30,34,35,]),'base':([0,],[3,]),'expression':([0,23,24,27,37,],[17,32,33,36,38,]),}
+_lr_goto_items = {'base':([0,],[15,]),'string':([21,23,27,],[30,32,36,]),'empty':([0,],[14,]),'NAME':([0,22,25,26,37,],[19,19,19,19,19,]),'expression':([0,22,25,26,37,],[3,31,34,35,38,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,34 +27,34 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> base","S'",1,None,None,None),
-  ('base -> expression','base',1,'p_base','plyparse.py',12),
-  ('base -> empty','base',1,'p_base','plyparse.py',13),
-  ('expression -> expression MULTIPLY INT R_ANGLE expression','expression',5,'p_special','plyparse.py',21),
-  ('expression -> expression R_ANGLE expression','expression',3,'p_expression_nonterminal','plyparse.py',27),
-  ('expression -> expression SIBLING expression','expression',3,'p_expression_nonterminal','plyparse.py',28),
-  ('expression -> expression CLIMB expression','expression',3,'p_expression_nonterminal','plyparse.py',29),
-  ('expression -> expression DOT string','expression',3,'p_expression_nonterminal','plyparse.py',31),
-  ('expression -> expression HASH string','expression',3,'p_expression_nonterminal','plyparse.py',32),
-  ('expression -> expression CONTENT string','expression',3,'p_expression_nonterminal','plyparse.py',33),
-  ('expression -> expression MULTIPLY INT','expression',3,'p_expression_nonterminal','plyparse.py',35),
-  ('expression -> NAME','expression',1,'p_temp','plyparse.py',41),
-  ('string -> CONTENT_STRING','string',1,'p_string','plyparse.py',47),
-  ('string -> STRING','string',1,'p_string','plyparse.py',48),
-  ('NAME -> DIV','NAME',1,'p_expression_terminal','plyparse.py',55),
-  ('NAME -> SPAN','NAME',1,'p_expression_terminal','plyparse.py',56),
-  ('NAME -> P','NAME',1,'p_expression_terminal','plyparse.py',57),
-  ('NAME -> H1','NAME',1,'p_expression_terminal','plyparse.py',58),
-  ('NAME -> H2','NAME',1,'p_expression_terminal','plyparse.py',59),
-  ('NAME -> H3','NAME',1,'p_expression_terminal','plyparse.py',60),
-  ('NAME -> H4','NAME',1,'p_expression_terminal','plyparse.py',61),
-  ('NAME -> H5','NAME',1,'p_expression_terminal','plyparse.py',62),
-  ('NAME -> H6','NAME',1,'p_expression_terminal','plyparse.py',63),
-  ('NAME -> UL','NAME',1,'p_expression_terminal','plyparse.py',64),
-  ('NAME -> LI','NAME',1,'p_expression_terminal','plyparse.py',65),
-  ('NAME -> TABLE','NAME',1,'p_expression_terminal','plyparse.py',66),
-  ('NAME -> TD','NAME',1,'p_expression_terminal','plyparse.py',67),
-  ('NAME -> TR','NAME',1,'p_expression_terminal','plyparse.py',68),
-  ('NAME -> IMG','NAME',1,'p_expression_terminal','plyparse.py',69),
-  ('NAME -> BR','NAME',1,'p_expression_terminal','plyparse.py',70),
-  ('empty -> <empty>','empty',0,'p_empty','plyparse.py',77),
+  ('base -> expression','base',1,'p_base','plyparseCopy.py',12),
+  ('base -> empty','base',1,'p_base','plyparseCopy.py',13),
+  ('expression -> expression MULTIPLY INT R_ANGLE expression','expression',5,'p_special','plyparseCopy.py',21),
+  ('expression -> expression R_ANGLE expression','expression',3,'p_expression_nonterminal','plyparseCopy.py',27),
+  ('expression -> expression SIBLING expression','expression',3,'p_expression_nonterminal','plyparseCopy.py',28),
+  ('expression -> expression CLIMB expression','expression',3,'p_expression_nonterminal','plyparseCopy.py',29),
+  ('expression -> expression DOT string','expression',3,'p_expression_nonterminal','plyparseCopy.py',31),
+  ('expression -> expression HASH string','expression',3,'p_expression_nonterminal','plyparseCopy.py',32),
+  ('expression -> expression CONTENT string','expression',3,'p_expression_nonterminal','plyparseCopy.py',33),
+  ('expression -> expression MULTIPLY INT','expression',3,'p_expression_nonterminal','plyparseCopy.py',35),
+  ('expression -> NAME','expression',1,'p_temp','plyparseCopy.py',41),
+  ('string -> CONTENT_STRING','string',1,'p_string','plyparseCopy.py',47),
+  ('string -> STRING','string',1,'p_string','plyparseCopy.py',48),
+  ('NAME -> DIV','NAME',1,'p_expression_terminal','plyparseCopy.py',55),
+  ('NAME -> SPAN','NAME',1,'p_expression_terminal','plyparseCopy.py',56),
+  ('NAME -> P','NAME',1,'p_expression_terminal','plyparseCopy.py',57),
+  ('NAME -> H1','NAME',1,'p_expression_terminal','plyparseCopy.py',58),
+  ('NAME -> H2','NAME',1,'p_expression_terminal','plyparseCopy.py',59),
+  ('NAME -> H3','NAME',1,'p_expression_terminal','plyparseCopy.py',60),
+  ('NAME -> H4','NAME',1,'p_expression_terminal','plyparseCopy.py',61),
+  ('NAME -> H5','NAME',1,'p_expression_terminal','plyparseCopy.py',62),
+  ('NAME -> H6','NAME',1,'p_expression_terminal','plyparseCopy.py',63),
+  ('NAME -> UL','NAME',1,'p_expression_terminal','plyparseCopy.py',64),
+  ('NAME -> LI','NAME',1,'p_expression_terminal','plyparseCopy.py',65),
+  ('NAME -> TABLE','NAME',1,'p_expression_terminal','plyparseCopy.py',66),
+  ('NAME -> TD','NAME',1,'p_expression_terminal','plyparseCopy.py',67),
+  ('NAME -> TR','NAME',1,'p_expression_terminal','plyparseCopy.py',68),
+  ('NAME -> IMG','NAME',1,'p_expression_terminal','plyparseCopy.py',69),
+  ('NAME -> BR','NAME',1,'p_expression_terminal','plyparseCopy.py',70),
+  ('empty -> <empty>','empty',0,'p_empty','plyparseCopy.py',77),
 ]
