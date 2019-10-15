@@ -27,7 +27,9 @@ def inside(p1,p2):
     return (p1)+(p2)+closingTag()+closingTag()
 
 def sibling(p1,p2):
-    try:
+    if len(stack)<=1:
+        return p1+p2+closingTag()
+    else:
         s = closingTag()
         return (p1)+closingTag()+(p2)+s
 
