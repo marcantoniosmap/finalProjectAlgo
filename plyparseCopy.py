@@ -25,7 +25,7 @@ def p_special(p):
     '''
     expression : expression MULTIPLY INT R_ANGLE expression
     '''
-    p[0]= (p[2],p[3],(p[4],p[1],p[5]))
+    p[0]= (p[2],(p[4],p[1],p[5]),p[3])
 
 
 
@@ -104,5 +104,8 @@ while True:
         break # ctrl + D ends the program
     if not s: continue
     result = parser.parse(s)
-    final=run(result)
+
+    # print(result)
+
+    final = run(result)
     print(final)

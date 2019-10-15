@@ -43,7 +43,8 @@ reserved={
     "td" : "TD",
     "tr" : "TR",
     "img" : "IMG",
-    "br" : "BR"
+    "br" : "BR",
+    "a":"A"
 }
 
 
@@ -56,11 +57,7 @@ t_SIBLING=r'\+'
 t_MULTIPLY=r'\*'
 t_L_PAREN=r'\('
 t_R_PAREN=r'\)'
-# t_L_CURLY=r'\{'
-# t_R_CURLY=r'\}'
 t_CLIMB=r'\^'
-# t_DOT=r'\.'
-# t_HASH=r'\#'
 
 def t_HASH(t):
     r'\#'
