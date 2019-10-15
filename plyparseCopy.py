@@ -6,6 +6,7 @@
 import sys
 
 import ply.yacc as yacc
+from run_file import *
 from plytokenCopy import tokens
 
 
@@ -26,6 +27,8 @@ def p_special(p):
     '''
     p[0]= (p[2],p[3],(p[4],p[1],p[5]))
 
+
+
 def p_expression_nonterminal(p):
     '''
     expression : expression R_ANGLE expression
@@ -39,6 +42,12 @@ def p_expression_nonterminal(p):
                | expression MULTIPLY INT
     '''
     p[0] = (p[2], p[1], p[3])
+
+def p_grouping(p):
+    '''
+    expression : L_PAREN expression R_PAREN
+    '''
+    p[0]=p[2]
 
 def p_temp(p):
     '''
@@ -95,4 +104,5 @@ while True:
         break # ctrl + D ends the program
     if not s: continue
     result = parser.parse(s)
-    print(result)
+    final=run(result)
+    print(final)
