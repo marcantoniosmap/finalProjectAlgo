@@ -30,14 +30,14 @@
         <counts>
           <entry key="html" value="148" />
           <entry key="md" value="761" />
-          <entry key="py" value="12364" />
+          <entry key="py" value="12374" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="148" />
           <entry key="Markdown" value="761" />
-          <entry key="Python" value="12364" />
+          <entry key="Python" value="12374" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parsetab.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plyparseCopy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="99" selection-start-line="99" selection-end-line="107" selection-end-column="16" />
+            <state relative-caret-position="798">
+              <caret line="87" column="15" lean-forward="true" selection-start-line="99" selection-end-line="107" selection-end-column="16" />
               <folding>
                 <element signature="e#213#223#0" expanded="true" />
                 <marker date="1571112372362" expanded="true" signature="669:670" ph="..." />
@@ -100,26 +100,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+            <state relative-caret-position="-12">
+              <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
               <folding>
-                <marker date="1571116080726" expanded="true" signature="474:523" ph="..." />
-                <marker date="1571116080726" expanded="true" signature="729:734" ph="..." />
-                <marker date="1571116080726" expanded="true" signature="775:802" ph="..." />
-                <marker date="1571116080726" expanded="true" signature="822:829" ph="..." />
-                <marker date="1571116080726" expanded="true" signature="885:890" ph="..." />
+                <marker date="1571121873885" expanded="true" signature="474:523" ph="..." />
+                <marker date="1571121873885" expanded="true" signature="729:734" ph="..." />
+                <marker date="1571121873885" expanded="true" signature="775:802" ph="..." />
+                <marker date="1571121873885" expanded="true" signature="822:829" ph="..." />
+                <marker date="1571121873885" expanded="true" signature="885:890" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plytokenCopy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
+            <state relative-caret-position="209">
               <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
             </state>
           </provider>
@@ -128,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parseHTML.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            <state>
+              <caret column="31" lean-forward="true" selection-start-column="31" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -180,6 +180,7 @@
         <option value="$PROJECT_DIR$/plyparseCopy.py" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/run_file.py" />
+        <option value="$PROJECT_DIR$/plytokenCopy.py" />
       </list>
     </option>
   </component>
@@ -362,21 +363,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15069398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3252841" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966952" weight="0.3252841" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3068182" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.8182419" visible="true" weight="0.13068181" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.18175809" side_tool="true" visible="true" weight="0.13068181" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.81758094" visible="true" weight="0.421875" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.18241903" side_tool="true" visible="true" weight="0.421875" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -458,34 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/markuPy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parseHTML.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plytokenCopy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parsetab.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -493,10 +465,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parseHTML.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/markuPy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parsetab.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plyparseCopy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="99" selection-start-line="99" selection-end-line="107" selection-end-column="16" />
+        <state relative-caret-position="798">
+          <caret line="87" column="15" lean-forward="true" selection-start-line="99" selection-end-line="107" selection-end-column="16" />
           <folding>
             <element signature="e#213#223#0" expanded="true" />
             <marker date="1571112372362" expanded="true" signature="669:670" ph="..." />
@@ -506,15 +499,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run_file.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        <state relative-caret-position="-12">
+          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
           <folding>
-            <marker date="1571116080726" expanded="true" signature="474:523" ph="..." />
-            <marker date="1571116080726" expanded="true" signature="729:734" ph="..." />
-            <marker date="1571116080726" expanded="true" signature="775:802" ph="..." />
-            <marker date="1571116080726" expanded="true" signature="822:829" ph="..." />
-            <marker date="1571116080726" expanded="true" signature="885:890" ph="..." />
+            <marker date="1571121873885" expanded="true" signature="474:523" ph="..." />
+            <marker date="1571121873885" expanded="true" signature="729:734" ph="..." />
+            <marker date="1571121873885" expanded="true" signature="775:802" ph="..." />
+            <marker date="1571121873885" expanded="true" signature="822:829" ph="..." />
+            <marker date="1571121873885" expanded="true" signature="885:890" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plytokenCopy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
         </state>
       </provider>
     </entry>
