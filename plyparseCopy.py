@@ -43,6 +43,13 @@ def p_expression_nonterminal(p):
     '''
     p[0] = (p[2], p[1], p[3])
 
+def p_expression_onlyProperty(p):
+    '''
+    expression : DOT string
+               | HASH string
+    '''
+    p[0]=(p[1],'div',p[2])
+
 def p_grouping(p):
     '''
     expression : L_PAREN expression R_PAREN
@@ -81,6 +88,8 @@ def p_expression_terminal(p):
         | TR
         | IMG
         | BR
+        | LINK
+        | A
     '''
     p[0] = p[1]
 

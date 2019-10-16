@@ -44,7 +44,8 @@ reserved={
     "tr" : "TR",
     "img" : "IMG",
     "br" : "BR",
-    "a":"A"
+    "a":"A",
+    "link":"LINK"
 }
 
 

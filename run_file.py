@@ -1,7 +1,7 @@
 import copy
-noCloseTag=["img","br"]
+noCloseTag=["img","br","link"]
 
-level=0
+
 class Tag:
 
     def __init__(self,tag):
@@ -35,11 +35,7 @@ class Tag:
         for c in self.sibling:
             temp+=c.__repr__()
         return temp
-    # def getParent(self):
-    #     temp = ""
-    #     for c in self.parent:
-    #         temp += c.__repr__()
-    #     return temp
+
     def addSibling(self,tag):
         self.sibling.append(tag)
 
@@ -50,20 +46,28 @@ class Tag:
         self.parent.append(parent)
 
     def makeTag(self):
-        if self.className !="" and self.id !="":
-            return "<"+self.tag +" class='"+self.className+"' id='"+self.id+"'>"
-        if self.className !="":
-            return "<"+self.tag +" class='"+self.className+"'>"
-        elif self.id !="":
-            return "<"+self.tag +" id='"+self.id+"'>"
-        else:
-            return "<"+self.tag+">"
+        if self.className!="": layout=" class='"+self.className+"'"
+        else: layout =""
+        if self.id!="": layout2=" id='"+self.id+"'"
+        else: layout2 =""
+        return self.getLayout()+layout2+layout+">"
+
 
     def makeCloseTag(self,tag):
         if tag in noCloseTag:
             return ""
         else:
             return "</"+tag+">"
+
+    def getLayout(self):
+        if self.tag=='img':
+            return "<img src='' alt=''"
+        elif self.tag=='link':
+            return "<link rel='stylesheet' href='"
+        elif self.tag=='a':
+            return "<a href=''"
+        else:
+            return "<"+self.tag
 
 
 
