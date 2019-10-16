@@ -11,7 +11,7 @@ class Tag:
         self.content=""
         self.children=[]
         self.sibling=[]
-        self.parent=None
+        self.parent=[]
 
     def setClassName(self,className):
         self.className+=" "+className
@@ -29,6 +29,7 @@ class Tag:
         for c in self.children:
             temp+=c.__repr__()
         return temp
+
     def getSibling(self):
         temp=""
         for c in self.sibling:
@@ -44,6 +45,9 @@ class Tag:
 
     def addChildren(self,children):
         self.children.append(children)
+
+    def addParent(self,parent):
+        self.parent.append(parent)
 
     def makeTag(self):
         if self.className !="" and self.id !="":
@@ -76,8 +80,7 @@ def run(p):
     elif p[0]=='+':
         return sibling(run(p[1]), run(p[2]))
     elif p[0]=='^':
-        # return parent(run(p[1]),run(p[2]))
-        pass
+        return parent(run(p[1]),run(p[2]))
     elif p[0]=='.':
         temp=run(p[1])
         temp.setClassName(p[2])
@@ -96,6 +99,8 @@ def run(p):
 
 def inside(p1,p2):
     p1.addChildren(p2)
+    for p in p2.parent:
+        p1.addSibling(p)
     return p1
 
 def sibling(p1,p2):
@@ -110,4 +115,6 @@ def multiply(p1,p2):
     return p1
 
 
-
+def parent(p1,p2):
+    p1.addParent(p2)
+    return p1
