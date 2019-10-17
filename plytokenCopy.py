@@ -45,7 +45,10 @@ reserved={
     "img" : "IMG",
     "br" : "BR",
     "a":"A",
-    "link":"LINK"
+    "link":"LINK",
+    "meta":"META",
+    "title":"TITLE",
+    "lorem":"LOREM",
 }
 
 
@@ -107,7 +110,6 @@ def t_error(t):
 
 
 lexer=lex.lex()
-
 # while True:
 #     s=input(">> ")
 #     lexer.input(s)

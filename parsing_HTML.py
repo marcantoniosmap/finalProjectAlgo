@@ -1,5 +1,6 @@
 import copy
-noCloseTag=["img","br","link"]
+from lorem_generator import *
+noCloseTag=["img","br","link","meta"]
 
 
 class Tag:
@@ -9,30 +10,38 @@ class Tag:
         self.className=""
         self.id=""
         self.content=""
+        self.level=0
         self.children=[]
         self.sibling=[]
         self.parent=[]
 
+    def __repr__(self):
+        return self.setIndentation()+self.makeTag() + self.content + self.getChildren()+self.makeCloseTag(self.tag)+self.getSibling()
+
     def setClassName(self,className):
-        self.className+=" "+className
+        self.className+=className+" "
 
     def setId(self,id):
         self.id=id
+
     def setContent(self,content):
         self.content=content
-
-    def __repr__(self):
-        return self.makeTag() + self.content + self.getChildren()+self.makeCloseTag(self.tag)+self.getSibling()
 
     def getChildren(self):
         temp =""
         for c in self.children:
+            c.level=self.level+1
+            temp+='\n'
             temp+=c.__repr__()
         return temp
+
+    def setIndentation(self):
+        return ('\t'*self.level)
 
     def getSibling(self):
         temp=""
         for c in self.sibling:
+            c.level=self.level
             temp+=c.__repr__()
         return temp
 
@@ -57,7 +66,9 @@ class Tag:
         if tag in noCloseTag:
             return ""
         else:
-            return "</"+tag+">"
+            if self.children:
+                return self.setIndentation()+"</"+tag+">\n"
+            return "</"+tag+">\n"
 
     def getLayout(self):
         if self.tag=='img':
@@ -102,10 +113,14 @@ def run(p):
 
 
 def inside(p1,p2):
-    p1.addChildren(p2)
-    for p in p2.parent:
-        p1.addSibling(p)
-    return p1
+    if p2=='lorem':
+        p1.setContent(getLorem())
+        return p1
+    else:
+        p1.addChildren(p2)
+        for p in p2.parent:
+            p1.addSibling(p)
+        return p1
 
 def sibling(p1,p2):
     p1.addSibling(p2)

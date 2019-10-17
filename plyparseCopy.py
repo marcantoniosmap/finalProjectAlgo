@@ -1,4 +1,3 @@
-# TODO multiplication, grouping, attribute operatos(ID, CLASS, item numbering), test {} 
 # https://docs.emmet.io/abbreviations/syntax/
 
 # import markuPy.Modules.ply.yacc as yacc
@@ -6,7 +5,7 @@
 import sys
 
 import ply.yacc as yacc
-from run_file import *
+# from run_file import *
 from plytokenCopy import tokens
 
 
@@ -90,6 +89,8 @@ def p_expression_terminal(p):
         | BR
         | LINK
         | A
+        | META
+        | TITLE
     '''
     p[0] = p[1]
 
@@ -102,19 +103,6 @@ def p_empty(p):
 
 # TODO 
 def p_error(p):
-    pass
+    print("efyju")
 
 parser = yacc.yacc()
-
-while True:
-    try:
-        s = input(">> ")
-    except EOFError:
-        break # ctrl + D ends the program
-    if not s: continue
-    result = parser.parse(s)
-
-    # print(result)
-
-    final = run(result)
-    print(final)
