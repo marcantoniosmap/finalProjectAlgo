@@ -25,7 +25,10 @@ class Tag:
         self.id=id
 
     def setContent(self,content):
-        self.content=content
+        if(content =='lorem'):
+            self.content=getLorem()
+        else:
+            self.content=content
 
     def getChildren(self):
         temp =""
@@ -113,14 +116,10 @@ def run(p):
 
 
 def inside(p1,p2):
-    if p2=='lorem':
-        p1.setContent(getLorem())
-        return p1
-    else:
-        p1.addChildren(p2)
-        for p in p2.parent:
-            p1.addSibling(p)
-        return p1
+    p1.addChildren(p2)
+    for p in p2.parent:
+        p1.addSibling(p)
+    return p1
 
 def sibling(p1,p2):
     p1.addSibling(p2)
