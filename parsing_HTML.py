@@ -1,7 +1,7 @@
 import copy
+import re
 from lorem_generator import *
 noCloseTag=["img","br","link","meta"]
-
 
 class Tag:
 
@@ -25,8 +25,13 @@ class Tag:
         self.id=id
 
     def setContent(self,content):
-        if(content =='lorem'):
-            self.content=getLorem()
+
+        if("lorem"in content):
+            if(content[-1:].isdigit()):
+                count = int(re.search(r'\d+', content).group())
+                self.content=getLorem(count)
+            else:
+                self.content = getLorem(50)
         else:
             self.content=content
 
