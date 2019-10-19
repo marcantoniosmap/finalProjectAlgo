@@ -22,28 +22,36 @@ def getLorem(count):
             ut lacus at massa mattis elementum vel non ligula. Fusce felis enim, tristique in lorem vel, convallis blandit libero. Aliquam erat volutpat. Vestibulum sed libero enim.
             Sed tempus auctor ipsum, eleifend bibendum est tempor in. Cras nisl felis, placerat a accumsan elementum, feugiat scelerisque tellus. Vivamus et leo in velit ullamcorper tincidunt. Fusce molestie hendrerit viverra. Duis interdum malesuada posuere. Donec et pellentesque leo, sed pulvinar risus. Suspendisse congue dapibus lacus, ac tincidunt nunc pulvinar tempor. Proin venenatis sit amet nunc convallis blandit. Sed ac iaculis urna. Nam tincidunt libero quis consequat porttitor. Integer ut dictum nibh. Quisque consequat velit non sapien fermentum sollicitudin. Nunc nec enim sed neque eleifend vestibulum. Duis auctor ac orci id porttitor."""
 
+    lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     li = list(str.split(" "))
 
     lit = []
-    if(count<=463):
-        for i in range( 0 , count):
+    if count == 8:
+        return lorem
+
+    elif(count<=463):
+        for i in range( 8 , count):
             lit.append(li[i])
+            shuffle(lit)
+
     else:
         count = 463
-        for i in range( 0 , count):
+        for i in range( 8 , count):
             lit.append(li[i])
+            shuffle(lit)
 
     str1 = " "
     str1 = str1.join(lit)
 
     if (str1[-1] == ',' or str1[-1] == '.' or str1[-1] == '!' or str1[-1] == '?'):
-        pass
+        str1 = str1[:-1]
+        str1 = ''.join((str1, '.'))
     else:
         str1 = ''.join((str1, '.'))
 
-    return str1
+    return lorem +" "+ str1
 
-    # feature for insert new line for every 10 words
+    # feature for insert a new line for every 10 words
     '''
     str1 = str1.join(lit).split()
     a = str1.split()
