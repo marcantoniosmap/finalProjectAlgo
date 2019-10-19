@@ -24,12 +24,17 @@ class Tag:
     def setId(self,id):
         self.id=id
 
-    def setContent(self,content):
-
+    def setContent(self,p,content):
         if("lorem"in content):
             if(content[-1:].isdigit()):
                 count = int(re.search(r'\d+', content).group())
                 self.content=getLorem(count)
+            elif p == 'p':
+                self.content = getLorem(20)
+            elif p == "div" or p =="span":
+                self.content = getLorem(40)
+            elif p == "h1" or p =="h2" or p =="h3" or p =="h4" or p =="h5" or p =="h6":
+                self.content = getLorem(30)
             else:
                 self.content = getLorem(50)
         else:
@@ -114,7 +119,7 @@ def run(p):
         return temp
     elif p[0]=='{':
         temp = run(p[1])
-        temp.setContent(p[2])
+        temp.setContent(p[1],p[2])
         return temp
     elif p[0]=='*':
         return multiply(run(p[1]), p[2])
