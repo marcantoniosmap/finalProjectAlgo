@@ -33,7 +33,7 @@ class Tag:
                 self.content = getLorem(20)
             elif p == "div" or p =="span":
                 self.content = getLorem(40)
-            elif p == "h1" or p =="h2" or p =="h3" or p =="h4" or p =="h5" or p =="h6":
+            elif p == "h1" or p =="h2" or p =="ph3" or p =="h4" or p =="h5" or p =="h6":
                 self.content = getLorem(30)
             else:
                 self.content = getLorem(50)
