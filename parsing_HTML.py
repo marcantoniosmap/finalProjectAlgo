@@ -91,7 +91,14 @@ class Tag:
         elif self.tag=='a':
             return "<a href=''"
         elif self.tag == 'doc':
-            return "<!DOCTYPE>"
+            return "<!DOCTYPE html>\n<html lang='en'>\n<head>\n\t<meta charset='utf-8'>" \
+                   "\n\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>" \
+                   "\n\t<meta http-equiv='X-UA-Compatible' content='ie=edge'>" \
+                   "<title>Document</title>" \
+                   "</head>" \
+                   "\n<body>\n" \
+                   "\n</body>" \
+                   "\n</html>"
         else:
             return "<"+self.tag
 
