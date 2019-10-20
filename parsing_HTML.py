@@ -1,7 +1,7 @@
 import copy
 import re
 from lorem_generator import *
-noCloseTag=["img","br","link","meta"]
+noCloseTag=["img","br","link","meta","doc"]
 
 class Tag:
 
@@ -90,6 +90,8 @@ class Tag:
             return "<link rel='stylesheet' href='"
         elif self.tag=='a':
             return "<a href=''"
+        elif self.tag == 'doc':
+            return "<!DOCTYPE>"
         else:
             return "<"+self.tag
 

@@ -91,6 +91,7 @@ def p_expression_terminal(p):
         | A
         | META
         | TITLE
+        | DOC
     '''
     p[0] = p[1]
 
@@ -103,6 +104,6 @@ def p_empty(p):
 
 # TODO 
 def p_error(p):
-    print("efyju")
+    pass
 
 parser = yacc.yacc()

@@ -48,7 +48,7 @@ reserved={
     "link":"LINK",
     "meta":"META",
     "title":"TITLE",
-    "lorem":"LOREM",
+    "doc" : "DOC",
 }
 
 
