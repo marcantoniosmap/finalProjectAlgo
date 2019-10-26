@@ -1,44 +1,31 @@
 import copy
 import re
-from lorem_generator import *
+
+from .lorem_generator import getLorem
+
+# from lorem_generator import getLorem
+
 noCloseTag=["img","br","link","meta","doc"]
 
-class Tag:
-
+class Tag():
     def __init__(self,tag):
         self.tag=tag
         self.className=""
         self.id=""
         self.content=""
-        self.level=0
+        self.level = 0
         self.children=[]
         self.sibling=[]
         self.parent=[]
 
     def __repr__(self):
-        return self.setIndentation()+self.makeTag() + self.content + self.getChildren()+self.makeCloseTag(self.tag)+self.getSibling()
+        return self.setIndentation()+self.makeTag() + self.getChildren()+ self.content+self.makeCloseTag(self.tag)+self.getSibling()
 
     def setClassName(self,className):
         self.className+=className+" "
 
     def setId(self,id):
         self.id=id
-
-    def setContent(self,p,content):
-        if("lorem"in content):
-            if(content[-1:].isdigit()):
-                count = int(re.search(r'\d+', content).group())
-                self.content=getLorem(count)
-            elif p == 'p':
-                self.content = getLorem(20)
-            elif p == "div" or p =="span":
-                self.content = getLorem(40)
-            elif p == "h1" or p =="h2" or p =="ph3" or p =="h4" or p =="h5" or p =="h6":
-                self.content = getLorem(30)
-            else:
-                self.content = getLorem(50)
-        else:
-            self.content=content
 
     def getChildren(self):
         temp =""
@@ -47,6 +34,23 @@ class Tag:
             temp+='\n'
             temp+=c.__repr__()
         return temp
+
+    def setContent(self,p,content,level):
+        # print(p.level)level
+        if("lorem"in content):
+            if(content[-1:].isdigit()):
+                count = int(re.search(r'\d+', content).group())
+                self.content=getLorem(count,level)
+            elif p == 'p':
+                self.content = getLorem(20,level)
+            elif p == "div" or p =="span":
+                self.content = getLorem(40,level)
+            elif p == "h1" or p =="h2" or p =="ph3" or p =="h4" or p =="h5" or p =="h6":
+                self.content = getLorem(30,level)
+            else:
+                self.content = getLorem(50,level)
+        else:
+            self.content=content
 
     def setIndentation(self):
         return ('\t'*self.level)
@@ -94,29 +98,28 @@ class Tag:
             return "<!DOCTYPE html>\n<html lang='en'>\n<head>\n\t<meta charset='utf-8'>" \
                    "\n\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>" \
                    "\n\t<meta http-equiv='X-UA-Compatible' content='ie=edge'>" \
-                   "<title>Document</title>" \
+                   "\n<title>Document</title>" \
                    "</head>" \
                    "\n<body>\n" \
                    "\n</body>" \
-                   "\n</html>"
+                   "\n</html"
         else:
             return "<"+self.tag
 
 
-
-
-
-stack=[]
+levels = 0
 def run(p):
-
+    global levels
     if type(p)==str:
         return Tag(p)
 
     if p[0]=='>':
+        levels = levels + 1
         return inside(run(p[1]),run(p[2]))
     elif p[0]=='+':
         return sibling(run(p[1]), run(p[2]))
     elif p[0]=='^':
+        levels = levels -1
         return parent(run(p[1]),run(p[2]))
     elif p[0]=='.':
         temp=run(p[1])
@@ -128,7 +131,7 @@ def run(p):
         return temp
     elif p[0]=='{':
         temp = run(p[1])
-        temp.setContent(p[1],p[2])
+        temp.setContent(p[1],p[2],levels)
         return temp
     elif p[0]=='*':
         return multiply(run(p[1]), p[2])

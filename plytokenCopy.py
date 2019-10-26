@@ -1,10 +1,9 @@
+# SUBLIME 
+from .Modules.ply import lex
+import sys
 
-#TO DO NEXT : GROUPING
-
-# import markuPy.Modules.ply.lex as lex
-# import sys
-
-import ply.lex as lex
+# NON - SUBLIME
+# import ply.lex as lex
 
 states = (
     ('getString','inclusive'),
@@ -27,7 +26,7 @@ tokens = [
     'CONTENT_STRING',
 ]
 
-reserved={
+reserved = {
     'div': 'DIV',
     'span' : 'SPAN',
     'p' : 'P',
@@ -37,25 +36,23 @@ reserved={
     'h4' : 'H4',
     'h5' : 'H5',
     'h6' : 'H6',
-    "ul" : "UL",
-    "li" : "LI",
-    "table" : "TABLE",
-    "td" : "TD",
-    "tr" : "TR",
-    "img" : "IMG",
-    "br" : "BR",
-    "a":"A",
-    "link":"LINK",
-    "meta":"META",
-    "title":"TITLE",
-    "doc" : "DOC",
+    'ul' : 'UL',
+    'li' : 'LI',
+    'table' : 'TABLE',
+    'td' : 'TD',
+    '' : 'TR',
+    'img' : 'IMG',
+    'br' : 'BR',
+    'a' : 'A',
+    'link' : 'LINK',
+    'meta' : 'META',
+    'title' : 'TITLE',
+    'doc' : 'DOC',
 }
-
 
 tokens += reserved.values()
 
-t_ignore=r' '
-
+# t_ignore=r' '
 t_R_ANGLE=r'\>'
 t_SIBLING=r'\+'
 t_MULTIPLY=r'\*'
@@ -109,7 +106,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer=lex.lex()
+lexer = lex.lex()
+
 # while True:
 #     s=input(">> ")
 #     lexer.input(s)
@@ -118,9 +116,3 @@ lexer=lex.lex()
 #         if not tok:
 #             break
 #         print(tok)
-
-# while True:
-#     s=input(">> ")
-#     lexer.input(s)
-#     tok = lexer.token()
-#     print(tok)

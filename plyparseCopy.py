@@ -1,15 +1,12 @@
-# https://docs.emmet.io/abbreviations/syntax/
-
-# import markuPy.Modules.ply.yacc as yacc
-# from .plytokenCopy import tokens
+# SUBLIME
+from .Modules.ply import yacc 
+from .plytokenCopy import tokens
 import sys
 
-import ply.yacc as yacc
-# from run_file import *
-from plytokenCopy import tokens
-
-
-# grammars
+# NON - SUBLIME
+# import ply.yacc as yacc
+# from parsing_HTML import *
+# from plytokenCopy import tokens
 
 def p_base(p):
     '''
@@ -33,11 +30,9 @@ def p_expression_nonterminal(p):
     expression : expression R_ANGLE expression
                | expression SIBLING expression
                | expression CLIMB expression
-
                | expression DOT string
                | expression HASH string
                | expression CONTENT string
-
                | expression MULTIPLY INT
     '''
     p[0] = (p[2], p[1], p[3])
@@ -47,13 +42,13 @@ def p_expression_onlyProperty(p):
     expression : DOT string
                | HASH string
     '''
-    p[0]=(p[1],'div',p[2])
+    p[0] = (p[1], 'div', p[2])
 
 def p_grouping(p):
     '''
     expression : L_PAREN expression R_PAREN
     '''
-    p[0]=p[2]
+    p[0] = p[2]
 
 def p_temp(p):
     '''
@@ -66,9 +61,8 @@ def p_string(p):
     string : CONTENT_STRING
             | STRING
     '''
-    p[0]=p[1]
+    p[0] = p[1]
 
-# TODO temporary solution to ID tokens will change in the future
 def p_expression_terminal(p):
     '''
     NAME : DIV

@@ -1,5 +1,6 @@
-from parsing_HTML import run
-from plyparseCopy import parser
+# NON - SUBLIME
+# from parsing_HTML import run
+# from plyparseCopy import parser
 
 while True:
     try:
@@ -14,4 +15,3 @@ while True:
         print(final)
     else:
         print(s)
-

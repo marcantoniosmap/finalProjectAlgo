@@ -1,0 +1,24 @@
+Sublime Plugin Imports (Windows)
+
+* markupy.py
+import sublime
+import sublime_plugin
+import re 
+import string
+
+from .plyparseCopy import parser
+from .parsing_HTML import run
+
+* parsing_HTML.py
+import copy
+import re
+from .lorem_generator import getLorem
+
+* plytoken.py
+from .Modules.ply import lex
+import sys
+
+* plyparse.py
+from .Modules.ply import yacc 
+from .plytokenCopy import tokens
+import sys
