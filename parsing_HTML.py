@@ -4,7 +4,8 @@ import re
 from .lorem_generator import getLorem
 
 # from lorem_generator import getLorem
-
+I = 1
+storage = []
 noCloseTag=["img","br","link","meta","doc"]
 
 class Tag():
@@ -21,11 +22,37 @@ class Tag():
     def __repr__(self):
         return self.setIndentation()+self.makeTag() + self.getChildren()+ self.content+self.makeCloseTag(self.tag)+self.getSibling()
 
-    def setClassName(self,className):
-        self.className+=className+" "
+    def setClassName(self, className):
+        if className[-1:].isdigit():
+            self.className = className[:-1]
+            self.className = ''.join((self.className, str(I)))
 
-    def setId(self,id):
-        self.id=id
+        elif className[-1:] == '$':
+            self.className = className[:-1]
+            self.className = ''.join((self.className, str(" ")))
+
+        elif className[-1:] != '$':
+            self.className = className
+            # self.className = ''.join((self.className, str(I)))
+
+    def setId(self, id):
+        if id[-1:].isdigit():
+            self.id = id[:-1]
+            self.id = ''.join((self.id, str(I)))
+
+        elif id[-1:] == '$':
+            self.id = id[:-1]
+            self.id = ''.join((self.id, str(" ")))
+
+        elif id[-1:] != '$':
+            self.id = id
+            # self.className = ''.join((self.className, str(I)))
+
+    # def setClassName(self,className):
+    #     self.className+=className+" "
+    #
+    # def setId(self,id):
+    #     self.id=id
 
     def getChildren(self):
         temp =""
@@ -114,6 +141,7 @@ def run(p):
         return Tag(p)
 
     if p[0]=='>':
+        levels = 0
         levels = levels + 1
         return inside(run(p[1]),run(p[2]))
     elif p[0]=='+':
@@ -147,12 +175,156 @@ def sibling(p1,p2):
     p1.addSibling(p2)
     return p1
 
-
 def multiply(p1,p2):
-    obj = copy.deepcopy(p1)
-    for _ in range(p2-1):
-        p1.addSibling(obj)
+    global I
+
+    if p1.sibling:
+        # print("haha")
+        p1.sibling.pop()
+
+    if len(storage)!= 0:
+        storage.clear()
+
+    if p1.className and p1.id:
+        if p1.className[-1:] == " ":
+            p1.className = p1.className[:-1]
+            p1.className = p1.className + str(I)
+            for q in range(p2):
+                if q == 0:
+                    storage.append(copy.deepcopy(p1))
+                else:
+                    I = I + 1
+                    storage[q-1].setClassName(p1.className)
+                    storage.append(copy.deepcopy(storage[q-1]))
+
+            # print(storage[0].className)
+
+            # for _ in range(0,  p2-1):
+            #     p1.addSibling(storage[_])
+
+            I = 1
+
+        elif p1.className[-1:] != " ":
+            p1.setClassName(p1.className)
+            # I = str(" ")
+            # p1.ClassName = ''.join((p1.className, str(I)))
+
+            obj = copy.deepcopy(p1)
+
+            # for j in range(p2 - 1):
+            #     p1.addSibling(obj)
+
+            I = 1
+
+        if p1.id[-1:] == " ":
+            p1.id = p1.id[:-1]
+            p1.id = p1.id + str(I)
+            for q in range(p2):
+                if q == 0:
+                    storage.append(copy.deepcopy(p1))
+                else:
+                    I = I + 1
+                    storage[q-1].setId(p1.id)
+                    storage.append(copy.deepcopy(storage[q-1]))
+
+            # print(storage[0].className)
+
+            for _ in range(0,  p2-1):
+                p1.addSibling(storage[_])
+
+            I = 1
+
+
+
+
+        elif p1.id[-1:] != " ":
+            p1.setId(p1.id)
+            # I = str(" ")
+            # p1.ClassName = ''.join((p1.className, str(I)))
+
+            obj = copy.deepcopy(p1)
+
+            for j in range(p2-1):
+                p1.addSibling(obj)
+
+            I = 1
+
+    elif p1.className :
+        if p1.className[-1:] == " ":
+            p1.className = p1.className[:-1]
+            p1.className = p1.className + str(I)
+            for q in range(p2):
+                if q == 0:
+                    storage.append(copy.deepcopy(p1))
+                else:
+                    I = I + 1
+                    storage[q-1].setClassName(p1.className)
+                    storage.append(copy.deepcopy(storage[q-1]))
+
+            # print(storage[0].className)
+
+            for _ in range(0,  p2-1):
+                p1.addSibling(storage[_])
+
+
+
+            I = 1
+
+        elif p1.className[-1:] != " ":
+            p1.setClassName(p1.className)
+            # I = str(" ")
+            # p1.ClassName = ''.join((p1.className, str(I)))
+
+            obj = copy.deepcopy(p1)
+
+            for j in range(p2-1):
+                p1.addSibling(obj)
+
+            I = 1
+
+    elif p1.id:
+        if p1.id[-1:] == " ":
+            p1.id = p1.id[:-1]
+            p1.id = p1.id + str(I)
+            for q in range(p2):
+                if q == 0:
+                    storage.append(copy.deepcopy(p1))
+                else:
+                    I = I + 1
+                    storage[q-1].setId(p1.id)
+                    storage.append(copy.deepcopy(storage[q-1]))
+
+            # print(storage[0].className)
+
+            for _ in range(0,  p2-1):
+                p1.addSibling(storage[_])
+
+            I = 1
+
+
+
+
+        elif p1.id[-1:] != " ":
+            p1.setId(p1.id)
+            # I = str(" ")
+            # p1.ClassName = ''.join((p1.className, str(I)))
+
+            obj = copy.deepcopy(p1)
+
+            for j in range(p2-1):
+                p1.addSibling(obj)
+
+            I = 1
+
+
+
     return p1
+
+# def multiply(p1,p2):
+#     obj = copy.deepcopy(p1)
+#     for _ in range(p2-1):
+#         p1.addSibling(obj)
+#     return p1
 
 
 def parent(p1,p2):
