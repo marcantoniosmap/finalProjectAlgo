@@ -9,7 +9,7 @@ while True:
         break # ctrl + D ends the program
     if not s: continue
     result = parser.parse(s)
-    # print(result)
+    print(result)
     if not result is None:
         final = run(result)
         print(final)

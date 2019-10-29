@@ -8,7 +8,6 @@ import sys
 states = (
     ('getString','inclusive'),
     ('content','inclusive'),
-    ('dollar','inclusive')
  )
 
 tokens = [
@@ -25,7 +24,6 @@ tokens = [
     'INT',
     'STRING',
     'CONTENT_STRING',
-    'DOLLAR_STRING'
 ]
 
 reserved = {
@@ -42,7 +40,7 @@ reserved = {
     'li' : 'LI',
     'table' : 'TABLE',
     'td' : 'TD',
-    '' : 'TR',
+    'tr' : 'TR',
     'img' : 'IMG',
     'br' : 'BR',
     'a' : 'A',
@@ -62,15 +60,6 @@ t_L_PAREN=r'\('
 t_R_PAREN=r'\)'
 t_CLIMB=r'\^'
 
-def t_DOLLAR(t):
-    r'\$'
-    t.lexer.begin('getString')
-    return t
-
-def t_dollar_DOLLAR_STRING(t):
-    r'[a-zA-Z][$-/:-?{-~!"^_`\[\]]*'
-    return t
-
 def t_HASH(t):
     r'\#'
     t.lexer.begin('getString')
@@ -87,10 +76,10 @@ def t_CONTENT(t):
     return t
 
 def t_content_CONTENT_STRING(t):
-    r'[a-zA-Z][ a-zA-Z0-9]*'
+    r'[a-zA-Z][ a-zA-Z0-9$]*'
     return t
 
-def t_content_R_CULRLY(t):
+def t_content_R_CURLY(t):
     r'\}'
     t.lexer.begin('INITIAL')
 

@@ -34,7 +34,6 @@ def p_expression_nonterminal(p):
                | expression HASH string
                | expression CONTENT string
                | expression MULTIPLY INT
-               | expression DOLLAR string
     '''
     p[0] = (p[2], p[1], p[3])
 
@@ -42,7 +41,6 @@ def p_expression_onlyProperty(p):
     '''
     expression : DOT string
                | HASH string
-               | DOLLAR string
     '''
     p[0] = (p[1], 'div', p[2])
 
@@ -62,7 +60,6 @@ def p_string(p):
     '''
     string : CONTENT_STRING
             | STRING
-            | DOLLAR_STRING
     '''
     p[0] = p[1]
 

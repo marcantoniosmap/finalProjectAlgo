@@ -4,9 +4,10 @@ import re
 from .lorem_generator import getLorem
 
 # from lorem_generator import getLorem
+
 I = 1
 storage = []
-noCloseTag=["img","br","link","meta","doc"]
+noCloseTag=["img","br","link","meta"]
 
 class Tag():
     def __init__(self,tag):
@@ -20,39 +21,22 @@ class Tag():
         self.parent=[]
 
     def __repr__(self):
-        return self.setIndentation()+self.makeTag() + self.getChildren()+ self.content+self.makeCloseTag(self.tag)+self.getSibling()
+        return self.setIndentation()+self.makeTag() + self.getChildren()+ self.content+self.makeCloseTag()+self.getSibling()
 
-    def setClassName(self, className):
-        if className[-1:].isdigit():
-            self.className = className[:-1]
-            self.className = ''.join((self.className, str(I)))
+    def setClassName(self,className):
+        self.className+=className+" "
 
-        elif className[-1:] == '$':
-            self.className = className[:-1]
-            self.className = ''.join((self.className, str(" ")))
+    def setId(self,id):
+        self.id=id
 
-        elif className[-1:] != '$':
-            self.className = className
-            # self.className = ''.join((self.className, str(I)))
-
-    def setId(self, id):
-        if id[-1:].isdigit():
-            self.id = id[:-1]
-            self.id = ''.join((self.id, str(I)))
-
-        elif id[-1:] == '$':
-            self.id = id[:-1]
-            self.id = ''.join((self.id, str(" ")))
-
-        elif id[-1:] != '$':
-            self.id = id
-            # self.className = ''.join((self.className, str(I)))
-
-    # def setClassName(self,className):
-    #     self.className+=className+" "
-    #
-    # def setId(self,id):
-    #     self.id=id
+    def checkIncrement(self,num):
+        num=str(num)
+        if "$" in self.className:
+            self.className=self.className.replace("$",num)
+        if "$" in self.id:
+            self.id=self.id.replace("$",num)
+        if "$" in self.content:
+            self.content = self.content.replace("$",num)
 
     def getChildren(self):
         temp =""
@@ -69,13 +53,9 @@ class Tag():
                 count = int(re.search(r'\d+', content).group())
                 self.content=getLorem(count,level)
             elif p == 'p':
-                self.content = getLorem(20,level)
-            elif p == "div" or p =="span":
                 self.content = getLorem(40,level)
-            elif p == "h1" or p =="h2" or p =="ph3" or p =="h4" or p =="h5" or p =="h6":
-                self.content = getLorem(30,level)
             else:
-                self.content = getLorem(50,level)
+                self.content = getLorem(10,level)
         else:
             self.content=content
 
@@ -99,20 +79,32 @@ class Tag():
         self.parent.append(parent)
 
     def makeTag(self):
-        if self.className!="": layout=" class='"+self.className+"'"
-        else: layout =""
-        if self.id!="": layout2=" id='"+self.id+"'"
-        else: layout2 =""
+        if self.className != "":
+            layout = " class='"+self.className+"'"
+        else:
+            layout = ""
+        if self.id != "":
+            layout2 = " id='"+self.id+"'"
+        else:
+            layout2 = ""
+        if self.tag in noCloseTag:
+            return self.getLayout()+layout2+layout+">\n"
         return self.getLayout()+layout2+layout+">"
 
 
-    def makeCloseTag(self,tag):
-        if tag in noCloseTag:
+    def makeCloseTag(self):
+        if self.tag in noCloseTag:
             return ""
         else:
+            if self.tag=='doc':
+                if self.children:
+                    return self.setIndentation()+"</body>\n"+ \
+                    self.setIndentation()+"</html>\n" 
+                return self.setIndentation()+"\n\n</body>\n"+ \
+                    self.setIndentation()+"</html>\n"
             if self.children:
-                return self.setIndentation()+"</"+tag+">\n"
-            return "</"+tag+">\n"
+                return self.setIndentation()+"</"+self.tag+">\n"
+            return "</"+self.tag+">\n"
 
     def getLayout(self):
         if self.tag=='img':
@@ -125,11 +117,9 @@ class Tag():
             return "<!DOCTYPE html>\n<html lang='en'>\n<head>\n\t<meta charset='utf-8'>" \
                    "\n\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>" \
                    "\n\t<meta http-equiv='X-UA-Compatible' content='ie=edge'>" \
-                   "\n<title>Document</title>" \
+                   "<title>Document</title>" \
                    "</head>" \
-                   "\n<body>\n" \
-                   "\n</body>" \
-                   "\n</html"
+                   "\n<body"
         else:
             return "<"+self.tag
 
@@ -141,7 +131,6 @@ def run(p):
         return Tag(p)
 
     if p[0]=='>':
-        levels = 0
         levels = levels + 1
         return inside(run(p[1]),run(p[2]))
     elif p[0]=='+':
@@ -160,6 +149,7 @@ def run(p):
     elif p[0]=='{':
         temp = run(p[1])
         temp.setContent(p[1],p[2],levels)
+        levels = 0
         return temp
     elif p[0]=='*':
         return multiply(run(p[1]), p[2])
@@ -176,156 +166,13 @@ def sibling(p1,p2):
     return p1
 
 def multiply(p1,p2):
-    global I
-
-    if p1.sibling:
-        # print("haha")
-        p1.sibling.pop()
-
-    if len(storage)!= 0:
-        storage.clear()
-
-    if p1.className and p1.id:
-        if p1.className[-1:] == " ":
-            p1.className = p1.className[:-1]
-            p1.className = p1.className + str(I)
-            for q in range(p2):
-                if q == 0:
-                    storage.append(copy.deepcopy(p1))
-                else:
-                    I = I + 1
-                    storage[q-1].setClassName(p1.className)
-                    storage.append(copy.deepcopy(storage[q-1]))
-
-            # print(storage[0].className)
-
-            # for _ in range(0,  p2-1):
-            #     p1.addSibling(storage[_])
-
-            I = 1
-
-        elif p1.className[-1:] != " ":
-            p1.setClassName(p1.className)
-            # I = str(" ")
-            # p1.ClassName = ''.join((p1.className, str(I)))
-
-            obj = copy.deepcopy(p1)
-
-            # for j in range(p2 - 1):
-            #     p1.addSibling(obj)
-
-            I = 1
-
-        if p1.id[-1:] == " ":
-            p1.id = p1.id[:-1]
-            p1.id = p1.id + str(I)
-            for q in range(p2):
-                if q == 0:
-                    storage.append(copy.deepcopy(p1))
-                else:
-                    I = I + 1
-                    storage[q-1].setId(p1.id)
-                    storage.append(copy.deepcopy(storage[q-1]))
-
-            # print(storage[0].className)
-
-            for _ in range(0,  p2-1):
-                p1.addSibling(storage[_])
-
-            I = 1
-
-
-
-
-        elif p1.id[-1:] != " ":
-            p1.setId(p1.id)
-            # I = str(" ")
-            # p1.ClassName = ''.join((p1.className, str(I)))
-
-            obj = copy.deepcopy(p1)
-
-            for j in range(p2-1):
-                p1.addSibling(obj)
-
-            I = 1
-
-    elif p1.className :
-        if p1.className[-1:] == " ":
-            p1.className = p1.className[:-1]
-            p1.className = p1.className + str(I)
-            for q in range(p2):
-                if q == 0:
-                    storage.append(copy.deepcopy(p1))
-                else:
-                    I = I + 1
-                    storage[q-1].setClassName(p1.className)
-                    storage.append(copy.deepcopy(storage[q-1]))
-
-            # print(storage[0].className)
-
-            for _ in range(0,  p2-1):
-                p1.addSibling(storage[_])
-
-
-
-            I = 1
-
-        elif p1.className[-1:] != " ":
-            p1.setClassName(p1.className)
-            # I = str(" ")
-            # p1.ClassName = ''.join((p1.className, str(I)))
-
-            obj = copy.deepcopy(p1)
-
-            for j in range(p2-1):
-                p1.addSibling(obj)
-
-            I = 1
-
-    elif p1.id:
-        if p1.id[-1:] == " ":
-            p1.id = p1.id[:-1]
-            p1.id = p1.id + str(I)
-            for q in range(p2):
-                if q == 0:
-                    storage.append(copy.deepcopy(p1))
-                else:
-                    I = I + 1
-                    storage[q-1].setId(p1.id)
-                    storage.append(copy.deepcopy(storage[q-1]))
-
-            # print(storage[0].className)
-
-            for _ in range(0,  p2-1):
-                p1.addSibling(storage[_])
-
-            I = 1
-
-
-
-
-        elif p1.id[-1:] != " ":
-            p1.setId(p1.id)
-            # I = str(" ")
-            # p1.ClassName = ''.join((p1.className, str(I)))
-
-            obj = copy.deepcopy(p1)
-
-            for j in range(p2-1):
-                p1.addSibling(obj)
-
-            I = 1
-
-
-
+    obj = copy.deepcopy(p1)
+    p1.checkIncrement(1)
+    for increment in range(2,p2+1):
+        objectCopied = copy.deepcopy(obj)
+        objectCopied.checkIncrement(increment)
+        p1.addSibling(objectCopied)
     return p1
-
-# def multiply(p1,p2):
-#     obj = copy.deepcopy(p1)
-#     for _ in range(p2-1):
-#         p1.addSibling(obj)
-#     return p1
-
 
 def parent(p1,p2):
     p1.addParent(p2)
