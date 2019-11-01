@@ -39,20 +39,23 @@ reserved = {
     'ul' : 'UL',
     'li' : 'LI',
     'table' : 'TABLE',
+    'th' : 'TH',
     'td' : 'TD',
     'tr' : 'TR',
     'img' : 'IMG',
     'br' : 'BR',
     'a' : 'A',
+    'i' : 'I',
     'link' : 'LINK',
     'meta' : 'META',
     'title' : 'TITLE',
     'doc' : 'DOC',
 }
 
+lerror = []
 tokens += reserved.values()
 
-# t_ignore=r' '
+t_ignore = ' \t'
 t_R_ANGLE=r'\>'
 t_SIBLING=r'\+'
 t_MULTIPLY=r'\*'
@@ -102,8 +105,11 @@ def t_INT(t):
     return t
 
 def t_error(t):
-    print('ERROR OCCURED ON :',t.lexpos)
+    print('ERROR OCCURED ON : {} line {}'.format(t.lexpos, t.lineno))
+    lerror.append((t.lexpos,len(t.value)))
     t.lexer.skip(1)
+    # return t
+    
 
 
 lexer = lex.lex()

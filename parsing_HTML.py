@@ -2,6 +2,7 @@ import copy
 import re
 
 from .lorem_generator import getLorem
+from .plytokenCopy import lerror
 
 # from lorem_generator import getLorem
 
@@ -47,7 +48,6 @@ class Tag():
         return temp
 
     def setContent(self,p,content,level):
-        # print(p.level)level
         if("lorem"in content):
             if(content[-1:].isdigit()):
                 count = int(re.search(r'\d+', content).group())
