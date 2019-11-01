@@ -2,8 +2,7 @@
 from .Modules.ply import lex
 import sys
 
-# NON - SUBLIME
-# import ply.lex as lex
+lerror = []
 
 states = (
     ('getString','inclusive'),
@@ -52,7 +51,6 @@ reserved = {
     'doc' : 'DOC',
 }
 
-lerror = []
 tokens += reserved.values()
 
 t_ignore = ' \t'
@@ -110,15 +108,7 @@ def t_error(t):
     t.lexer.skip(1)
     # return t
     
-
+def retList():
+    return lerror
 
 lexer = lex.lex()
-
-# while True:
-#     s=input(">> ")
-#     lexer.input(s)
-#     while True:
-#         tok = lexer.token()
-#         if not tok:
-#             break
-#         print(tok)

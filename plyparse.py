@@ -1,22 +1,15 @@
 # SUBLIME
 from .Modules.ply import yacc 
-from .plytokenCopy import tokens, lerror
+from .plytoken import tokens
 import sys
 
-# NON - SUBLIME
-# import ply.yacc as yacc
-# from parsing_HTML import *
-# from plytokenCopy import tokens
-
-class ParseError(Exception): pass
+# class ParseError(Exception): pass
 
 def p_base(p):
     '''
     base :  expression 
          |  empty
     '''
-    if len(lerror) != 0:
-        raise ParseError("error parsing")
     p[0] = p[1] # moved the print to the main loop
 
 # Nonterminal symbols (or syntactic variables) are replaced by groups of terminal symbols

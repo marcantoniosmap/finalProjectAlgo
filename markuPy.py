@@ -3,8 +3,8 @@ import sublime_plugin
 import re 
 import string
 
-from .plytokenCopy import lerror
-from .plyparseCopy import parser
+from .plytoken import retList
+from .plyparse import parser
 from .parsing_HTML import run, levels
 
 
@@ -14,6 +14,7 @@ class MarkupyCommand(sublime_plugin.TextCommand):
 		region = self.view.line(region)
 		between_tag = False
 		error_syntax = False
+		lerror = retList()
 		
 		s = self.view.substr(region) # gets the string
 

@@ -2,7 +2,7 @@ import copy
 import re
 
 from .lorem_generator import getLorem
-from .plytokenCopy import lerror
+from .plytoken import lerror
 
 # from lorem_generator import getLorem
 
