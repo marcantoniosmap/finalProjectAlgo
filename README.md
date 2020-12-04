@@ -1,4 +1,8 @@
-# MarkuPy
+<p align="center">
+  <img src="https://raw.githubusercontent.com/marcantoniosmap/markupy/master/docs/logo.png">
+</p>
+
+--------------------------------------------------------------------
 The name MarkuPy is inspired from the word mark-up and python. Mark-up comes from the HTML abbreviation while Python is the programming language we use for this project.
 
 Markupy is a sublime plug-ins for text editors that allow for high-speed coding and editing in HTML and other structured code formats via content assist. It allows us to be more efficient and organized with our HTML code by creating appropriate indentation that are easy to read and understand.
