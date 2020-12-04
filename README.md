@@ -13,10 +13,16 @@ Team members:
 
 ## Example
 Below is a simple example.
+
 ![demo](docs/demo.gif)
+
 [Longer Demo Video](https://drive.google.com/file/d/1UGSovD3uagaxkWa0qcp_pNYbgIekuarx/view?usp=sharing)
 
 ## HTML Comparison
+To get a better understanding below is a comparison with HTML.
+![html vs markupy](docs/compare.png)
+
+## Language Syntax
 To get a better understanding below is a comparison with HTML.
 ![html vs markupy](docs/syntax.png)
 
