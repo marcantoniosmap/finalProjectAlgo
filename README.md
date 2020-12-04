@@ -23,13 +23,15 @@ To get a better understanding below is a comparison with HTML.
 ![html vs markupy](docs/compare.png)
 
 ## Language Syntax
-To get a better understanding below is a comparison with HTML.
+MarkuPy syntax.
+
 ![html vs markupy](docs/syntax.png)
 
 ## How to Install
 1. Clone or download zip of MarkuPy in to your sublime plugin directory.
 
 `$ cd ~/Users/username/Library/Application\ Support/Sublime\ Text\ 3/Packages`
+
 2. Open **Preferences > Key Bindings** and set any key binding combination you want. Below is an example of the format.
 ```
 [
