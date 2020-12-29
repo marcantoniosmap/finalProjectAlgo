@@ -12,6 +12,7 @@ The inspiration comes from emmet, a plugin that is available already in Visual S
 Created for Analysis of Algorithms and Compiler Design final project.
 
 Team members:
+* [Figo Aranta - Github](https://github.com/figoaranta)
 * [Amartya Saleh Kadarisman - Github](https://github.com/amartya18)
 * [MarcAntonio Purnama - Github](https://github.com/marcantoniosmap)
 
